@@ -1,0 +1,4 @@
+A Coruna        0,195 0,151
+Albacete        0,609 0,609
+Alicante        0,697 0,675
+Barcelona       0,864 0,363
