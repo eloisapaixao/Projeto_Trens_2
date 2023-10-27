@@ -21,26 +21,11 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
         set => situacao = value; 
     }
 
-    int posicaoAtual = 0;
-    public int PosicaoAtual 
-    { 
-        get => posicaoAtual; 
-        set => posicaoAtual = value; 
-    }
-
     public bool EstaNoInicio => atual == raiz;
-
-    public bool EstaNoFim => throw new NotImplementedException();
 
     public bool EstaVazio => raiz == null;
 
     public int Tamanho => throw new NotImplementedException();
-
-    public Dado this[int indice] 
-    { 
-        get => this[indice]; 
-        set => this[indice] = value; 
-    }
 
     public Arvore()
     {
@@ -254,66 +239,6 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
         return sucessor;
     }
 
-    public void PosicionarNoPrimeiro()
-    {
-        situacao = Situacao.pesquisando;
-        if (!EstaVazio)
-            if (!EstaNoInicio)
-            {
-                antecessor = null;
-                atual = raiz;
-            }
-    }
-
-    public void AvancarPosicao()
-    {
-        situacao = Situacao.pesquisando;
-        if (!EstaVazio)
-        {
-            if(atual.Esq != null)
-            {
-                antecessor = atual;
-                atual = atual.Esq;
-            }
-            else if (atual.Dir != null)
-            {
-                antecessor = atual;
-                atual = atual.Dir;
-            }
-        }
-    }
-
-    public void PosicionarNoUltimo()
-    {
-        situacao = Situacao.pesquisando;
-        if (!EstaVazio)
-        {
-            while (atual.Dir != null)
-            {
-                antecessor = atual;
-                atual = atual.Dir;
-            }
-        }
-    }
-
-    public void PosicionarEm(int posicaoDesejada)
-    {
-        situacao = Situacao.pesquisando;
-        if (!EstaVazio)
-        {
-            if (posicaoDesejada == 0)
-                PosicionarNoPrimeiro();
-            else if (posicaoDesejada == Tamanho - 1)
-                PosicionarNoUltimo();
-            else
-            {
-                antecessor = null;
-                atual = raiz;
-
-            }
-        }
-    }
-
     public Dado DadoAtual()
     {
         if (atual == null)
@@ -337,36 +262,6 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
     }
 
     public void ExibirDados(TextBox lista)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool Existe(Dado procurado, out int ondeEsta)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool Excluir(Dado dadoAExcluir)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool IncluirNoInicio(Dado novoValor)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool IncluirAposFim(Dado novoValor)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool Incluir(Dado novoValor)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool Incluir(Dado novoValor, int posicaoDeInclusao)
     {
         throw new NotImplementedException();
     }
