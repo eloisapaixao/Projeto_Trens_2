@@ -9,7 +9,6 @@ public enum Situacao
 interface IDados<Dado> where Dado : IComparable<Dado>, IRegistro<Dado>, new()
 {
     void PosicionarNoPrimeiro();
-    void RetrocederPosicao();
     void AvancarPosicao();
     void PosicionarNoUltimo();
     void PosicionarEm(int posicaoDesejada);
