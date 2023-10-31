@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-public class ListaSimples<Dado> where Dado : IComparable<Dado>
+public class ListaSimples<Dado>
+    where Dado : IComparable<Dado>
 {
     private NoLista<Dado> primeiro;
     private NoLista<Dado> ultimo;

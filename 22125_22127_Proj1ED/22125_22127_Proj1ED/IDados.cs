@@ -14,18 +14,18 @@ interface IDados<Dado> where Dado : IComparable<Dado>, IRegistro<Dado>, new()
     //void PosicionarEm(int posicaoDesejada);
     Dado DadoAtual();  // retorna o dado atualmente visitado
     //Dado this[int indice] { get; set; }  // acessa e retorna o indice-ésimo Dado
-    void ExibirDados();
+    //void ExibirDados();
     void ExibirDados(ListBox lista);
-    void ExibirDados(ComboBox lista);
-    void ExibirDados(TextBox lista);
+    //void ExibirDados(ComboBox lista);
+    //void ExibirDados(TextBox lista);
     bool Existe(Dado procurado);
     //bool Excluir(Dado dadoAExcluir);             // excluirá o Dado atualmente visitado
     //bool IncluirNoInicio(Dado novoValor);   // Inserir novo dado antes do primeiro dado armazenado
     //bool IncluirAposFim(Dado novoValor);    // Inserir novo dado após o último dado armazenado
     //bool Incluir(Dado novoValor, int posicaoDeInclusao);
-    void Ordenar();
-    void LerDados(string nomeArquivo);
-    void GravarDados(string nomeArquivo);
+    //void Ordenar();
+    //void LerDados(string nomeArquivo);
+    //void GravarDados(string nomeArquivo);
     Situacao SituacaoAtual { get; set; }
     //int PosicaoAtual { get; set; }
     bool EstaNoInicio { get; }

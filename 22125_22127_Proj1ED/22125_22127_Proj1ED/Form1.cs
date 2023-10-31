@@ -30,7 +30,9 @@ namespace _22125_22127_Proj1ED
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            
+            txtNome.Text = "";
+            nudCoordenadaX.Value = 0;
+            nudCoordenadaY.Value = 0;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)

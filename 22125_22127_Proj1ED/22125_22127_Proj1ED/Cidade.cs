@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Forms;
 
 //Eloisa Paixão de Oliveira - 22127
 //Eduarda Graziele de Paiva - 22125
@@ -14,6 +15,11 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
               iniX = iniNome + tamNome,
               iniY = iniX + tamX;
 
+    const int tamanhoRegistro = tamNome +     // nome
+                                sizeof(decimal) +   // tamanho x
+                                sizeof(decimal);     // tamanho y
+
+
     string nome;
     decimal y, x;
 
@@ -22,16 +28,17 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
         get => nome;
         set
         {
-            if(nome.Length < tamNome || nome.Length > tamNome)
+            if (nome.Length < tamNome || nome.Length > tamNome)
                 nome = value.PadRight(tamNome, ' ').Substring(0, tamNome);
         }
     }
-    public decimal X 
-    { 
-        get => x; 
-        set => x = value; 
+    public decimal X
+    {
+        get => x;
+        set => x = value;
     }
     public decimal Y { get => y; set => y = value; }
+    
     public Cidade() { }
 
     public Cidade(string nome, decimal x, decimal y)
@@ -46,43 +53,17 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
         return nome.ToUpperInvariant().CompareTo(outro.nome.ToUpperInvariant());
     }
 
-    public Cidade LerRegistro(StreamReader arquivo)
+    public int TamanhoRegistro { get => tamanhoRegistro; }
+    public void GravarRegistro(BinaryWriter arquivo)
     {
-        if (arquivo != null) // arquivo aberto?
+        if (arquivo != null)    // arquivo aberto?
         {
-            string linha = arquivo.ReadLine();
-            nome = linha.Substring(iniNome, tamNome);
-
-            x = decimal.Parse(linha.Substring(iniX, tamX));
-
-            y = decimal.Parse(linha.Substring(iniY));
-
-            return this; // retorna o próprio objeto Contato, com os dados
-        }
-        return default(Cidade);
-    }
-    public String LerRegistros(StreamReader arquivo)
-    {
-        string l = "";
-        if (arquivo != null) // arquivo aberto?
-        {
-            string linha = arquivo.ReadLine();
-            nome = linha.Substring(iniNome, tamNome);
-
-            x = decimal.Parse(linha.Substring(iniX, tamX));
-
-            y = decimal.Parse(linha.Substring(iniY));
-            l = ToString();
-            return l; // retorna o próprio objeto Contato, com os dados
-        }
-        return "";
-    }
-
-    public void GravarRegistro(StreamWriter arq)
-    {
-        if (arq != null)  // arquivo de saída aberto?
-        {
-            arq.WriteLine(this.ToString());
+            char[] umNome = new char[tamNome];
+            for (int i = 0; i < tamNome; i++)
+                umNome[i] = this.nome[i];
+            arquivo.Write(umNome);
+            arquivo.Write(X);
+            arquivo.Write(Y);
         }
     }
     public string ParaArquivo()
@@ -92,6 +73,30 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
 
     public override string ToString()
     {
-        return Nome.PadRight(tamNome+1, ' ') + X.ToString().PadLeft(tamX+1, ' ') + Y.ToString().PadLeft(tamY+1, ' ');
+        return Nome.PadRight(tamNome + 1, ' ') + X.ToString().PadLeft(tamX + 1, ' ') + Y.ToString().PadLeft(tamY + 1, ' ');
+    }
+
+    public void LerRegistro(BinaryReader arquivo, long qualRegistro)
+    {
+        if (arquivo != null)
+            try
+            {
+                long qtosBytes = qualRegistro * TamanhoRegistro;
+                arquivo.BaseStream.Seek(qtosBytes, SeekOrigin.Begin);
+                // arquivo leia TamanhoRegistro bytes e separe pelos campos:
+
+                char[] umNome = new char[tamNome]; // vetor de 30 char
+                umNome = arquivo.ReadChars(tamNome);  // lê 30 chars
+                string nomeLido = new string(umNome);
+
+                Nome = nomeLido;
+                X = arquivo.ReadDecimal();
+                Y = arquivo.ReadDecimal();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
     }
 }

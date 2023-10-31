@@ -41,23 +41,23 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
         int posicaoFinal = (int)origem.Length / dado.TamanhoRegistro - 1;
         Particionar(0, posicaoFinal, ref raiz);
         origem.Close();
-
         void Particionar(long inicio, long fim, ref NoArvore<Dado> atual)
         {
             if (inicio <= fim)
             {
-                long meio = (inicio + fim) / 2;  // registro do meio da partição sob leitura
-                dado = new Dado();               // cria um objeto para armazenar os dados
-                dado.LerRegistro(arquivo, meio); //
+                long meio = (inicio + fim) / 2;
+                dado = new Dado(); // cria um objeto para armazenar os dados
+                dado.LerRegistro(arquivo, meio); // 
                 atual = new NoArvore<Dado>(dado);
                 var novoEsq = atual.Esq;
-                Particionar(inicio, meio - 1, ref novoEsq); // Particiona à esquerda
+                Particionar(inicio, meio - 1, ref novoEsq); // Particiona à esquerda 
                 atual.Esq = novoEsq;
                 var novoDir = atual.Dir;
-                Particionar(meio + 1, fim, ref novoDir); // Particiona à direita
+                Particionar(meio + 1, fim, ref novoDir); // Particiona à direita 
                 atual.Dir = novoDir;
             }
         }
+
     }
 
     public void GravarArquivoDeRegistros(string nomeArquivo)
@@ -246,39 +246,22 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
         return atual.Info;
     }
 
-    public void ExibirDados()
-    {
-        throw new NotImplementedException();
-    }
-
     public void ExibirDados(ListBox lista)
     {
-        throw new NotImplementedException();
-    }
+        lista.Items.Clear();
 
-    public void ExibirDados(ComboBox lista)
-    {
-        throw new NotImplementedException();
-    }
+        GravarInOrdem(raiz);
+      
+        void GravarInOrdem(NoArvore<Dado> r)
+        {
+            if (r != null)
+            {
+                GravarInOrdem(r.Esq);
+                lista.Items.Add(r.Info.ToString());
+                GravarInOrdem(r.Dir);
+            }
+        }
 
-    public void ExibirDados(TextBox lista)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Ordenar()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void LerDados(string nomeArquivo)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void GravarDados(string nomeArquivo)
-    {
-        throw new NotImplementedException();
     }
 }
 

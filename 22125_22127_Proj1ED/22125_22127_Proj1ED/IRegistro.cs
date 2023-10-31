@@ -2,7 +2,7 @@
 
 public interface IRegistro<Dado>
 {
-    Dado LerRegistro(StreamReader arquivo);
-    string ParaArquivo();
-    void GravarRegistro(StreamWriter arquivo);
+    void LerRegistro(BinaryReader arquivo, long qualRegistro);
+    void GravarRegistro(BinaryWriter arquivo);
+    int TamanhoRegistro { get; }
 }
