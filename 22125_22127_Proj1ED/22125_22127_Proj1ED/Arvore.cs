@@ -79,7 +79,7 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
 
     public void DesenharArvore(int x, int y, Graphics g)
     {
-        DesenharArvore(true, raiz, x, y, 60, 0.5, 100, g);
+        DesenharArvore(true, raiz, x, y, 60, 0.5, 400, g);
     }
     private void DesenharArvore(bool primeiraVez, NoArvore<Dado> raiz,
                 int x, int y, double angulo, double incremento,
@@ -90,9 +90,12 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
         {
             Pen caneta = new Pen(Color.Red);
             xf = (int)Math.Round(x + Math.Cos(angulo) * comprimento);
-            yf = (int)Math.Round(y + Math.Sin(angulo) * comprimento);
+            yf = (int)Math.Round(y + Math.Sin(angulo) * comprimento/2);
             if (primeiraVez)
+            {
                 yf = 25;
+                xf = x;
+            }
             g.DrawLine(caneta, x, y, xf, yf);
 
             DesenharArvore(false, raiz.Esq, xf, yf,

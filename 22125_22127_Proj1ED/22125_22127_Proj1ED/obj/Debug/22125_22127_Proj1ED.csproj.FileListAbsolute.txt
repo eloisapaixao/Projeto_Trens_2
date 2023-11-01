@@ -17,3 +17,14 @@ C:\Users\WIN10\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_
 C:\Users\WIN10\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.csproj.CoreCompileInputs.cache
 C:\Users\WIN10\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.exe
 C:\Users\WIN10\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.pdb
+C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.csproj.AssemblyReference.cache
+C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.csproj.SuggestedBindingRedirects.cache
+C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\_22125_22127_Proj1ED.frmMapa.resources
+C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\_22125_22127_Proj1ED.Properties.Resources.resources
+C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.csproj.GenerateResource.cache
+C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.csproj.CoreCompileInputs.cache
+C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.exe
+C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.pdb
+C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.exe.config
+C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.exe
+C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.pdb

@@ -32,66 +32,6 @@ namespace _22125_22127_Proj1ED
             nudCoordenadaY.Value = 0;
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnInicio_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnAnterior_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnProximo_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void btnUltimo_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnProcurar_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnNovo_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnExcluir_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void pcMapa_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
-        public void LimparCampos()
-        {
-            
-        }
-
-        private void btnAcharCaminho_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void pcMapa_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void frmMapa_Load_1(object sender, EventArgs e)
         {
             if (dlgAbrir.ShowDialog() == DialogResult.OK)
@@ -99,10 +39,10 @@ namespace _22125_22127_Proj1ED
                 arvore = new Arvore<Cidade>();
                 //aqui teremos o arquivo de dados e montaremos a árvore
                 arvore.LerArquivoDeRegistros(dlgAbrir.FileName);
-                if (dlgAbrir.ShowDialog() == DialogResult.OK)
+                if (dlgLigacoes.ShowDialog() == DialogResult.OK)
                 {
                     // instanciamos um fluxo de arquivo
-                    FileStream fluxoCaminhos = new FileStream(dlgAbrir.FileName, FileMode.Open);
+                    FileStream fluxoCaminhos = new FileStream(dlgLigacoes.FileName, FileMode.Open);
                     // e um leitor do arquivo binário
                     BinaryReader arquivoCaminhos = new BinaryReader(fluxoCaminhos);
 
@@ -113,7 +53,7 @@ namespace _22125_22127_Proj1ED
                     {
                         Ligacoes ligacoes = new Ligacoes();
                         ligacoes.LerRegistro(arquivoCaminhos, registro);
-                        ligacoes.NomeArquivo = dlgAbrir.FileName;
+                        ligacoes.NomeArquivo = dlgLigacoes.FileName;
 
                         if (arvore.Existe(new Cidade(ligacoes.Origem)))
                             arvore.Atual.Info.Ligacoes.InserirEmOrdem(ligacoes);
@@ -121,6 +61,11 @@ namespace _22125_22127_Proj1ED
                 }
             }
             pcMapa.Invalidate();
+        }
+
+        private void pcArvore_Paint(object sender, PaintEventArgs e)
+        {
+            arvore.DesenharArvore(pcArvore.Width / 2, 0, e.Graphics);
         }
     }
 }

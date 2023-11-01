@@ -60,28 +60,28 @@ internal class Ligacoes : IComparable<Ligacoes>, IRegistro<Ligacoes>
 
     public void LerRegistro(BinaryReader arquivo, long qualRegistro)
     {
-        if (arquivo != null)
-            try
-            {
-                long qtosBytes = qualRegistro * TamanhoRegistro;
-                arquivo.BaseStream.Seek(qtosBytes, SeekOrigin.Begin);
-                // arquivo leia TamanhoRegistro bytes e separe pelos campos:
+        try
+        {
+            long bytes = qualRegistro * TamanhoRegistro;
+            arquivo.BaseStream.Seek(bytes, SeekOrigin.Begin);
 
-                char[] umaOrigem = new char[tamOrigem]; // vetor de 30 char
-                umaOrigem = arquivo.ReadChars(tamOrigem);  // lê 30 chars
-                string origemLida = new string(umaOrigem);
+            foreach (char letra in arquivo.ReadChars(tamOrigem))
+                if (letra != '\0')
+                    origem += letra;
 
-                char[] umDestino = new char[tamDestino]; // vetor de 30 char
-                umDestino = arquivo.ReadChars(tamDestino);  // lê 30 chars
-                string destinoLido = new string(umDestino);
+            foreach (char letra in arquivo.ReadChars(tamDestino))
+                if (letra != '\0')
+                    destino += letra;
 
-                Distancia = arquivo.ReadInt32();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            Distancia = arquivo.ReadInt32();
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
     }
+
 
     public void GravarRegistro(BinaryWriter arquivo)
     {
