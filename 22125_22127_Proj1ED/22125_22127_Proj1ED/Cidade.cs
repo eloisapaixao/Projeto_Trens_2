@@ -24,6 +24,8 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
     string nome;
     double y, x;
     ListaSimples<Ligacoes> caminhos;
+    internal ListaSimples<Ligacoes> Ligacoes { get => ligacoes; set => ligacoes = value; }
+
     public string Nome
     {
         get => nome;
@@ -46,13 +48,17 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
         this.nome = nome;
         this.x = x;
         this.y = y;
+        Ligacoes = new ListaSimples<Ligacoes>();
     }
 
     public int CompareTo(Cidade outro)
     {
         return nome.ToUpperInvariant().CompareTo(outro.nome.ToUpperInvariant());
     }
-
+    public Cidade(string nome)
+    {
+        Nome = nome;
+    }
     public int TamanhoRegistro { get => tamanhoRegistro; }
     public void GravarRegistro(BinaryWriter arquivo)
     {

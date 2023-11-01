@@ -94,11 +94,32 @@ namespace _22125_22127_Proj1ED
 
         private void frmMapa_Load_1(object sender, EventArgs e)
         {
-            arvore = new Arvore<Cidade>();
+            if (dlgAbrir.ShowDialog() == DialogResult.OK)
+            {
+                arvore = new Arvore<Cidade>();
+                //aqui teremos o arquivo de dados e montaremos a árvore
+                arvore.LerArquivoDeRegistros(dlgAbrir.FileName);
+                if (dlgAbrir.ShowDialog() == DialogResult.OK)
+                {
+                    // instanciamos um fluxo de arquivo
+                    FileStream fluxoCaminhos = new FileStream(dlgAbrir.FileName, FileMode.Open);
+                    // e um leitor do arquivo binário
+                    BinaryReader arquivoCaminhos = new BinaryReader(fluxoCaminhos);
 
-            //aqui teremos o arquivo de dados e montaremos a árvore
-            arvore.LerArquivoDeRegistros("C:\\Users\\u22125\\Documents\\GitHub\\Projeto_Trens_2\\22125_22127_Proj1ED\\22125_22127_Proj1ED\\cidades.dat");
+                    // percorre cada registro dentre os registros do arquivo de caminho
+                    for (int registro = 0;
+                        registro < (int)fluxoCaminhos.Length / new Ligacoes().TamanhoRegistro;
+                        registro++)
+                    {
+                        Ligacoes ligacoes = new Ligacoes();
+                        ligacoes.LerRegistro(arquivoCaminhos, registro);
+                        ligacoes.NomeArquivo = dlgAbrir.FileName;
 
+                        if (arvore.Existe(new Cidade(ligacoes.Origem)))
+                            arvore.Atual.Info.Ligacoes.InserirEmOrdem(ligacoes);
+                    }
+                }
+            }
             pcMapa.Invalidate();
         }
     }

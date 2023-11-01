@@ -9,8 +9,7 @@ internal class Ligacoes : IComparable<Ligacoes>, IRegistro<Ligacoes>
 {
     const int tamOrigem = 15,
           tamDestino = 15,
-          tamDistancia = 5,
-          tamCusto = 5;
+          tamDistancia = 5;
 
     const int iniOrigem = 0,
               iniDestino = iniOrigem + tamOrigem,
@@ -18,15 +17,14 @@ internal class Ligacoes : IComparable<Ligacoes>, IRegistro<Ligacoes>
               iniCusto = iniDistancia + tamDistancia;
 
 
-    string origem, destino;
-    int distancia, custo;
+    string origem, destino, nomeArquivo;
+    int distancia;
 
-    public Ligacoes(string origem, string destino, int distancia, int custo)
+    public Ligacoes(string origem, string destino, int distancia)
     {
         this.origem = origem;
         this.destino = destino;
         this.distancia = distancia;
-        this.custo = custo;
     }
 
     public Ligacoes() { }
@@ -34,7 +32,7 @@ internal class Ligacoes : IComparable<Ligacoes>, IRegistro<Ligacoes>
     public string Origem { get => Origem; set => Origem = value; }
     public string Destino { get => Destino; set => Destino = value; }
     public int Distancia { get => distancia; set => distancia = value; }
-    public int Custo { get => custo; set => custo = value; }
+    public string NomeArquivo { get => nomeArquivo; set => nomeArquivo = value; }
 
 
     const int tamanhoRegistro = tamOrigem +     // origem
@@ -52,12 +50,12 @@ internal class Ligacoes : IComparable<Ligacoes>, IRegistro<Ligacoes>
 
     public string ParaArquivo()
     {
-        return $"{Origem}{Destino}{Distancia:00000}{Custo:00000}";
+        return $"{Origem}{Destino}{Distancia:00000}";
     }
 
     public override string ToString()
     {
-        return $"{Origem} {Destino} {Distancia:00000} {Custo:00000}";
+        return $"{Origem} {Destino} {Distancia:00000}";
     }
 
     public void LerRegistro(BinaryReader arquivo, long qualRegistro)
@@ -78,7 +76,6 @@ internal class Ligacoes : IComparable<Ligacoes>, IRegistro<Ligacoes>
                 string destinoLido = new string(umDestino);
 
                 Distancia = arquivo.ReadInt32();
-                Custo = arquivo.ReadInt32();
             }
             catch (Exception ex)
             {
@@ -93,7 +90,6 @@ internal class Ligacoes : IComparable<Ligacoes>, IRegistro<Ligacoes>
             arquivo.Write(Origem);
             arquivo.Write(Destino);
             arquivo.Write(Distancia);
-            arquivo.Write(Custo);
         }
     }
 }
