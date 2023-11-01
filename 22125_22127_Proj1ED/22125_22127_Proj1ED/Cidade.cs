@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -16,32 +17,31 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
               iniY = iniX + tamX;
 
     const int tamanhoRegistro = tamNome +     // nome
-                                sizeof(decimal) +   // tamanho x
-                                sizeof(decimal);     // tamanho y
+                                sizeof(double) +   // tamanho x
+                                sizeof(double);     // tamanho y
 
 
     string nome;
-    decimal y, x;
-
+    double y, x;
+    ListaSimples<Ligacoes> caminhos;
     public string Nome
     {
         get => nome;
         set
         {
-            if (nome.Length < tamNome || nome.Length > tamNome)
                 nome = value.PadRight(tamNome, ' ').Substring(0, tamNome);
         }
     }
-    public decimal X
+    public double X
     {
         get => x;
         set => x = value;
     }
-    public decimal Y { get => y; set => y = value; }
+    public double Y { get => y; set => y = value; }
     
     public Cidade() { }
 
-    public Cidade(string nome, decimal x, decimal y)
+    public Cidade(string nome, double x, double y)
     {
         this.nome = nome;
         this.x = x;
@@ -81,17 +81,19 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
         if (arquivo != null)
             try
             {
-                long qtosBytes = qualRegistro * TamanhoRegistro;
-                arquivo.BaseStream.Seek(qtosBytes, SeekOrigin.Begin);
+                long qtosBytes = qualRegistro * TamanhoRegistro; //Calculamos o offset (deslocamento) de bytes desde o início do arquivo que nos posiciona exatamente 
+                                                                //no início do registro desejado
+                
+                 arquivo.BaseStream.Seek(qtosBytes, SeekOrigin.Begin);
                 // arquivo leia TamanhoRegistro bytes e separe pelos campos:
 
-                char[] umNome = new char[tamNome]; // vetor de 30 char
+                char[] umNome = new char[tamNome]; // vetor de 30 char para 
                 umNome = arquivo.ReadChars(tamNome);  // lê 30 chars
                 string nomeLido = new string(umNome);
 
                 Nome = nomeLido;
-                X = arquivo.ReadDecimal();
-                Y = arquivo.ReadDecimal();
+                X = arquivo.ReadDouble();
+                Y = arquivo.ReadDouble();
 
             }
             catch (Exception ex)

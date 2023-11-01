@@ -286,12 +286,12 @@ public class ListaSimples<Dado>
         {
             atual = this.primeiro;
             NoLista<Dado> aux = atual.Prox;
-            if (atual.Info.Separar())
+            /*if (atual.Info.Separar())
                 l2.InserirAposFim(atual);
             else
                 l1.InserirAposFim(atual);
             this.primeiro = aux;
-            this.quantosNos--;
+            this.quantosNos--;*/
         }
         this.ultimo = null;
     }

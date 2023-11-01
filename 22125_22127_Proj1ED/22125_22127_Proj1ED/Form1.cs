@@ -18,10 +18,7 @@ namespace _22125_22127_Proj1ED
             InitializeComponent();
         }
 
-        private void frmMapa_Load(object sender, EventArgs e)
-        {
-
-        }
+        Arvore<Cidade> arvore;
 
         private void btnSair_Click(object sender, EventArgs e)
         {
@@ -88,6 +85,21 @@ namespace _22125_22127_Proj1ED
         private void btnAcharCaminho_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void pcMapa_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmMapa_Load_1(object sender, EventArgs e)
+        {
+            arvore = new Arvore<Cidade>();
+
+            //aqui teremos o arquivo de dados e montaremos a árvore
+            arvore.LerArquivoDeRegistros("C:\\Users\\u22125\\Documents\\GitHub\\Projeto_Trens_2\\22125_22127_Proj1ED\\22125_22127_Proj1ED\\cidades.dat");
+
+            pcMapa.Invalidate();
         }
     }
 }
