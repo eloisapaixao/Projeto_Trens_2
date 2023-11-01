@@ -81,12 +81,12 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
     {
         DesenharArvore(true, raiz, x, y, 60, 0.5, 400, g);
     }
-    private void DesenharArvore(bool primeiraVez, NoArvore<Dado> raiz,
+    private void DesenharArvore(bool primeiraVez, NoArvore<Dado> no,
                 int x, int y, double angulo, double incremento,
                 double comprimento, Graphics g)
     {
         int xf, yf;
-        if (raiz != null)
+        if (no != null)
         {
             Pen caneta = new Pen(Color.Red);
             xf = (int)Math.Round(x + Math.Cos(angulo) * comprimento);
@@ -98,15 +98,15 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
             }
             g.DrawLine(caneta, x, y, xf, yf);
 
-            DesenharArvore(false, raiz.Esq, xf, yf,
+            DesenharArvore(false, no.Esq, xf, yf,
                            Math.PI / 2 + incremento,
                            incremento * 0.60, comprimento * 0.8, g);
-            DesenharArvore(false, raiz.Dir, xf, yf,
+            DesenharArvore(false, no.Dir, xf, yf,
                            Math.PI / 2 - incremento,
                            incremento * 0.60, comprimento * 0.8, g);
             SolidBrush preenchimento = new SolidBrush(Color.Blue);
             g.FillEllipse(preenchimento, xf - 25, yf - 15, 42, 30);
-            g.DrawString(Convert.ToString(raiz.Info.ToString()),
+            g.DrawString(Convert.ToString(no.Info.ToString()),
                          new Font("Comic Sans", 10),
                          new SolidBrush(Color.Yellow), xf - 23, yf - 7);
         }

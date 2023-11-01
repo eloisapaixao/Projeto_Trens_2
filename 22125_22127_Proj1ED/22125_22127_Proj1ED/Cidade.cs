@@ -41,7 +41,10 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
     }
     public double Y { get => y; set => y = value; }
     
-    public Cidade() { }
+    public Cidade() 
+    {
+        Ligacoes = new ListaSimples<Ligacoes>();
+    }
 
     public Cidade(string nome, double x, double y)
     {

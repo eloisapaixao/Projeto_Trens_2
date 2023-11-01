@@ -67,5 +67,15 @@ namespace _22125_22127_Proj1ED
         {
             arvore.DesenharArvore(pcArvore.Width / 2, 0, e.Graphics);
         }
+
+        private void btnIncluirCaminho_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

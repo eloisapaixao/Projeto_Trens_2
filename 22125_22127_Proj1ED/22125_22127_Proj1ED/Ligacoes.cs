@@ -13,8 +13,7 @@ internal class Ligacoes : IComparable<Ligacoes>, IRegistro<Ligacoes>
 
     const int iniOrigem = 0,
               iniDestino = iniOrigem + tamOrigem,
-              iniDistancia = iniDestino + tamDestino,
-              iniCusto = iniDistancia + tamDistancia;
+              iniDistancia = iniDestino + tamDestino;
 
 
     string origem, destino, nomeArquivo;
@@ -29,8 +28,8 @@ internal class Ligacoes : IComparable<Ligacoes>, IRegistro<Ligacoes>
 
     public Ligacoes() { }
 
-    public string Origem { get => Origem; set => Origem = value; }
-    public string Destino { get => Destino; set => Destino = value; }
+    public string Origem { get => origem; set => origem = value; }
+    public string Destino { get => destino; set => destino = value; }
     public int Distancia { get => distancia; set => distancia = value; }
     public string NomeArquivo { get => nomeArquivo; set => nomeArquivo = value; }
 

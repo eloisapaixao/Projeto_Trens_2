@@ -46,7 +46,7 @@ namespace _22125_22127_Proj1ED
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dlgSalvar = new System.Windows.Forms.OpenFileDialog();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvRotas = new System.Windows.Forms.DataGridView();
             this.c1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,10 +60,8 @@ namespace _22125_22127_Proj1ED
             this.btnIncluirCaminho = new System.Windows.Forms.Button();
             this.cbDestino2 = new System.Windows.Forms.ComboBox();
             this.cbOrigem2 = new System.Windows.Forms.ComboBox();
-            this.nudCusto2 = new System.Windows.Forms.NumericUpDown();
             this.nudDistancia2 = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -88,11 +86,10 @@ namespace _22125_22127_Proj1ED
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRotas)).BeginInit();
             this.tbCidades.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCusto2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistancia2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcMapa)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -102,9 +99,6 @@ namespace _22125_22127_Proj1ED
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.lsbArquivo);
             this.groupBox1.Controls.Add(this.nudCoordenadaY);
             this.groupBox1.Controls.Add(this.label4);
@@ -118,6 +112,7 @@ namespace _22125_22127_Proj1ED
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cidades";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // lsbArquivo
             // 
@@ -221,10 +216,12 @@ namespace _22125_22127_Proj1ED
             // 
             this.dlgSalvar.FileName = "openFileDialog1";
             // 
-            // dataGridView1
+            // dgvRotas
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvRotas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvRotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRotas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.c1,
             this.c2,
             this.c3,
@@ -232,11 +229,11 @@ namespace _22125_22127_Proj1ED
             this.c5,
             this.c6,
             this.c7});
-            this.dataGridView1.Location = new System.Drawing.Point(321, 381);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(490, 134);
-            this.dataGridView1.TabIndex = 4;
+            this.dgvRotas.Location = new System.Drawing.Point(321, 381);
+            this.dgvRotas.Name = "dgvRotas";
+            this.dgvRotas.RowTemplate.Height = 25;
+            this.dgvRotas.Size = new System.Drawing.Size(490, 134);
+            this.dgvRotas.TabIndex = 4;
             // 
             // c1
             // 
@@ -282,6 +279,9 @@ namespace _22125_22127_Proj1ED
             // 
             // tbCidades
             // 
+            this.tbCidades.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbCidades.Controls.Add(this.tabPage1);
             this.tbCidades.Controls.Add(this.tabPage2);
             this.tbCidades.Location = new System.Drawing.Point(0, 49);
@@ -295,7 +295,7 @@ namespace _22125_22127_Proj1ED
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.pcMapa);
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.dgvRotas);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -306,13 +306,12 @@ namespace _22125_22127_Proj1ED
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.btnIncluirCaminho);
             this.groupBox2.Controls.Add(this.cbDestino2);
             this.groupBox2.Controls.Add(this.cbOrigem2);
-            this.groupBox2.Controls.Add(this.nudCusto2);
             this.groupBox2.Controls.Add(this.nudDistancia2);
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.comboBox3);
             this.groupBox2.Controls.Add(this.label15);
@@ -326,15 +325,20 @@ namespace _22125_22127_Proj1ED
             // 
             // btnIncluirCaminho
             // 
-            this.btnIncluirCaminho.Location = new System.Drawing.Point(10, 137);
+            this.btnIncluirCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnIncluirCaminho.Location = new System.Drawing.Point(108, 108);
             this.btnIncluirCaminho.Name = "btnIncluirCaminho";
-            this.btnIncluirCaminho.Size = new System.Drawing.Size(60, 50);
+            this.btnIncluirCaminho.Size = new System.Drawing.Size(67, 50);
             this.btnIncluirCaminho.TabIndex = 49;
             this.btnIncluirCaminho.Text = "Incluir Caminho";
             this.btnIncluirCaminho.UseVisualStyleBackColor = true;
+            this.btnIncluirCaminho.Click += new System.EventHandler(this.btnIncluirCaminho_Click);
             // 
             // cbDestino2
             // 
+            this.cbDestino2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbDestino2.FormattingEnabled = true;
             this.cbDestino2.Location = new System.Drawing.Point(141, 39);
             this.cbDestino2.Name = "cbDestino2";
@@ -343,21 +347,14 @@ namespace _22125_22127_Proj1ED
             // 
             // cbOrigem2
             // 
+            this.cbOrigem2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbOrigem2.FormattingEnabled = true;
             this.cbOrigem2.Location = new System.Drawing.Point(7, 39);
             this.cbOrigem2.Name = "cbOrigem2";
             this.cbOrigem2.Size = new System.Drawing.Size(130, 21);
             this.cbOrigem2.TabIndex = 47;
-            // 
-            // nudCusto2
-            // 
-            this.nudCusto2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudCusto2.Location = new System.Drawing.Point(62, 100);
-            this.nudCusto2.Name = "nudCusto2";
-            this.nudCusto2.Size = new System.Drawing.Size(246, 20);
-            this.nudCusto2.TabIndex = 46;
             // 
             // nudDistancia2
             // 
@@ -380,18 +377,6 @@ namespace _22125_22127_Proj1ED
             this.label12.Size = new System.Drawing.Size(43, 13);
             this.label12.TabIndex = 44;
             this.label12.Text = "Tempo:";
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(7, 102);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(37, 13);
-            this.label13.TabIndex = 43;
-            this.label13.Text = "Custo:";
             // 
             // label14
             // 
@@ -463,6 +448,9 @@ namespace _22125_22127_Proj1ED
             // 
             // pcArvore
             // 
+            this.pcArvore.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pcArvore.Location = new System.Drawing.Point(3, 3);
             this.pcArvore.Name = "pcArvore";
             this.pcArvore.Size = new System.Drawing.Size(811, 515);
@@ -599,12 +587,11 @@ namespace _22125_22127_Proj1ED
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRotas)).EndInit();
             this.tbCidades.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCusto2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistancia2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcMapa)).EndInit();
             this.tabPage2.ResumeLayout(false);
@@ -631,7 +618,7 @@ namespace _22125_22127_Proj1ED
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private OpenFileDialog dlgSalvar;
-        private DataGridView dataGridView1;
+        private DataGridView dgvRotas;
         private DataGridViewTextBoxColumn c1;
         private DataGridViewTextBoxColumn c2;
         private DataGridViewTextBoxColumn c3;
@@ -659,10 +646,8 @@ namespace _22125_22127_Proj1ED
         private Button btnIncluirCaminho;
         private ComboBox cbDestino2;
         private ComboBox cbOrigem2;
-        private NumericUpDown nudCusto2;
         private NumericUpDown nudDistancia2;
         private Label label12;
-        private Label label13;
         private Label label14;
         private ComboBox comboBox3;
         private Label label15;
