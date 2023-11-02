@@ -35,7 +35,6 @@ namespace _22125_22127_Proj1ED
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMapa));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lsbArquivo = new System.Windows.Forms.ListBox();
             this.nudCoordenadaY = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.nudCoordenadaX = new System.Windows.Forms.NumericUpDown();
@@ -81,6 +80,7 @@ namespace _22125_22127_Proj1ED
             this.dlgLigacoes = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.btnProcurarCaminho = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).BeginInit();
@@ -98,7 +98,6 @@ namespace _22125_22127_Proj1ED
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lsbArquivo);
             this.groupBox1.Controls.Add(this.nudCoordenadaY);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.nudCoordenadaX);
@@ -112,17 +111,6 @@ namespace _22125_22127_Proj1ED
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cidades";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // lsbArquivo
-            // 
-            this.lsbArquivo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lsbArquivo.FormattingEnabled = true;
-            this.lsbArquivo.Location = new System.Drawing.Point(5, 97);
-            this.lsbArquivo.Name = "lsbArquivo";
-            this.lsbArquivo.Size = new System.Drawing.Size(303, 173);
-            this.lsbArquivo.TabIndex = 8;
             // 
             // nudCoordenadaY
             // 
@@ -291,6 +279,7 @@ namespace _22125_22127_Proj1ED
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.btnProcurarCaminho);
             this.groupBox2.Controls.Add(this.btnIncluirCaminho);
             this.groupBox2.Controls.Add(this.btnAlterarCaminho);
             this.groupBox2.Controls.Add(this.txtDestino);
@@ -312,7 +301,7 @@ namespace _22125_22127_Proj1ED
             // btnIncluirCaminho
             // 
             this.btnIncluirCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnIncluirCaminho.Location = new System.Drawing.Point(30, 108);
+            this.btnIncluirCaminho.Location = new System.Drawing.Point(9, 108);
             this.btnIncluirCaminho.Name = "btnIncluirCaminho";
             this.btnIncluirCaminho.Size = new System.Drawing.Size(67, 50);
             this.btnIncluirCaminho.TabIndex = 53;
@@ -323,7 +312,7 @@ namespace _22125_22127_Proj1ED
             // btnAlterarCaminho
             // 
             this.btnAlterarCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAlterarCaminho.Location = new System.Drawing.Point(206, 108);
+            this.btnAlterarCaminho.Location = new System.Drawing.Point(161, 108);
             this.btnAlterarCaminho.Name = "btnAlterarCaminho";
             this.btnAlterarCaminho.Size = new System.Drawing.Size(67, 50);
             this.btnAlterarCaminho.TabIndex = 52;
@@ -354,7 +343,7 @@ namespace _22125_22127_Proj1ED
             // btnExcluirCaminho
             // 
             this.btnExcluirCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExcluirCaminho.Location = new System.Drawing.Point(118, 108);
+            this.btnExcluirCaminho.Location = new System.Drawing.Point(85, 108);
             this.btnExcluirCaminho.Name = "btnExcluirCaminho";
             this.btnExcluirCaminho.Size = new System.Drawing.Size(67, 50);
             this.btnExcluirCaminho.TabIndex = 49;
@@ -593,6 +582,16 @@ namespace _22125_22127_Proj1ED
             this.label11.TabIndex = 6;
             this.label11.Text = "Km do caminho selecionado (xxxxx Km)";
             // 
+            // btnProcurarCaminho
+            // 
+            this.btnProcurarCaminho.Location = new System.Drawing.Point(237, 108);
+            this.btnProcurarCaminho.Name = "btnProcurarCaminho";
+            this.btnProcurarCaminho.Size = new System.Drawing.Size(68, 50);
+            this.btnProcurarCaminho.TabIndex = 54;
+            this.btnProcurarCaminho.Text = "Procurar Caminho";
+            this.btnProcurarCaminho.UseVisualStyleBackColor = true;
+            this.btnProcurarCaminho.Click += new System.EventHandler(this.btnProcurarCaminho_Click);
+            // 
             // frmMapa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -631,7 +630,6 @@ namespace _22125_22127_Proj1ED
         #endregion
 
         private GroupBox groupBox1;
-        private ListBox lsbArquivo;
         private NumericUpDown nudCoordenadaY;
         private Label label4;
         private NumericUpDown nudCoordenadaX;
@@ -677,6 +675,7 @@ namespace _22125_22127_Proj1ED
         private ToolStripButton btnAlterar;
         private Button btnIncluirCaminho;
         private Button btnAlterarCaminho;
+        private Button btnProcurarCaminho;
     }
 }
 
