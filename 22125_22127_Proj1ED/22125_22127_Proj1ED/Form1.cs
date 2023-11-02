@@ -64,9 +64,16 @@ namespace _22125_22127_Proj1ED
                         ligacoes.LerRegistro(arquivoCaminhos, registro);
                         ligacoes.NomeArquivo = dlgLigacoes.FileName;
 
+                        //Os dados do arquivo não estão sendo armazenados na lista lisgações
                         if (arvore.Existe(new Cidade(ligacoes.Origem)))
                             arvore.Atual.Info.Ligacoes.InserirEmOrdem(ligacoes);
                     }
+                }
+
+                if (arvore.Tamanho() > 0)
+                {
+                    cidadeSelecionada = arvore.Raiz.Info;
+                    PopularCampos();
                 }
             }
             pcMapa.Invalidate();
@@ -153,6 +160,7 @@ namespace _22125_22127_Proj1ED
                 if (!arvore.Existe(cidade))
                 {
                     arvore.IncluirNovoRegistro(cidade);
+                    cidadeSelecionada = cidade;
                     MessageBox.Show("Inclusão feita com sucesso!");
                     LimparCampos();
                     pcArvore.Invalidate();
@@ -176,6 +184,7 @@ namespace _22125_22127_Proj1ED
 
                 if (!cidadeSelecionada.Ligacoes.EstaVazia)
                 {
+                    //QuantosNos está vazio porque os dados não estão sendo armazenados na lista
                     dgvRotas.RowCount = cidadeSelecionada.Ligacoes.QuantosNos;
 
                     Ligacoes primeiroCaminho = cidadeSelecionada.Ligacoes.Primeiro.Info;

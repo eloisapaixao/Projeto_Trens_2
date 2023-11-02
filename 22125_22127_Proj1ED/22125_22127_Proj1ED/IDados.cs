@@ -31,5 +31,5 @@ interface IDados<Dado> where Dado : IComparable<Dado>, IRegistro<Dado>, new()
     bool EstaNoInicio { get; }
     //bool EstaNoFim { get; }
     bool EstaVazio { get; }
-    int Tamanho { get; }
+    int Tamanho();
 }

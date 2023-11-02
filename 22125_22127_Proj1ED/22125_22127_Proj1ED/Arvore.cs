@@ -25,8 +25,20 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
 
     public bool EstaVazio => raiz == null;
 
-    public int Tamanho => throw new NotImplementedException();
+    private int Tamanho(NoArvore<Dado> no)
+    {
+        if (no == null)
+            return 0;
 
+        return 1 +
+            Tamanho(no.Esq) +
+            Tamanho(no.Dir);
+    }
+
+    public int Tamanho()
+    {
+        return Tamanho(raiz);
+    }
     public Arvore()
     {
         raiz = atual = antecessor = null;
