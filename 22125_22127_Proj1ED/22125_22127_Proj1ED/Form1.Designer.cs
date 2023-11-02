@@ -497,6 +497,7 @@ namespace _22125_22127_Proj1ED
             this.btnCancelar.Size = new System.Drawing.Size(57, 35);
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnSalvar
             // 

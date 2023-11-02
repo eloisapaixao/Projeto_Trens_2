@@ -26,12 +26,6 @@ namespace _22125_22127_Proj1ED
             Close();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            txtNome.Text = "";
-            nudCoordenadaX.Value = 0;
-            nudCoordenadaY.Value = 0;
-        }
         private void LimparCampos()
         {
             txtNome.Clear();
@@ -335,6 +329,13 @@ namespace _22125_22127_Proj1ED
             {
                 MessageBox.Show("Não foi possível alterar a cidade!");
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            txtNome.Text = "";
+            nudCoordenadaX.Value = 0;
+            nudCoordenadaY.Value = 0;
         }
     }
 }
