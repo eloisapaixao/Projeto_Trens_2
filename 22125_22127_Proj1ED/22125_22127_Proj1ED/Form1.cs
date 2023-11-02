@@ -76,34 +76,6 @@ namespace _22125_22127_Proj1ED
             arvore.DesenharArvore(pcArvore.Width / 2, 0, e.Graphics);
         }
 
-        private void btnIncluirCaminho_Click(object sender, EventArgs e)
-        {
-            string origem = txtOrigem.Text.Trim();
-            string destino = txtDestino.Text.Trim();
-            int distancia = (int)nudDistancia2.Value;
-
-            if (origem == "" || destino == "" || distancia == 0)
-                MessageBox.Show("Erro! Verifique se os campos estão preenchidos corretamente.");
-
-            else
-            {
-                // se ambas as cidades existem
-                if (arvore.Existe(new Cidade(origem)) && arvore.Existe(new Cidade(destino)))
-                {
-                    Ligacoes ligacoes = new Ligacoes(origem, destino, distancia);
-                    ligacoes.NomeArquivo = dlgLigacoes.FileName;
-                    arvore.Atual.Info.Ligacao.InserirEmOrdem(ligacoes);
-                    MessageBox.Show("Inclusão feita com sucesso!");
-                    Preencher();
-                    pcMapa.Invalidate();
-                    pcArvore.Invalidate();
-                }
-
-                else
-                    MessageBox.Show("Não foi possível incluir o caminho!");
-            }
-        }
-
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -336,6 +308,105 @@ namespace _22125_22127_Proj1ED
             txtNome.Text = "";
             nudCoordenadaX.Value = 0;
             nudCoordenadaY.Value = 0;
+        }
+
+        private void btnIncluirCaminho_Click(object sender, EventArgs e)
+        {
+            string origem = txtOrigem.Text.Trim();
+            string destino = txtDestino.Text.Trim();
+            int distancia = (int)nudDistancia2.Value;
+
+            if (origem == "" || destino == "" || distancia == 0)
+                MessageBox.Show("Erro! Verifique se os campos estão preenchidos corretamente.");
+
+            else
+            {
+                // se ambas as cidades existem
+                if (arvore.Existe(new Cidade(origem)) && arvore.Existe(new Cidade(destino)))
+                {
+                    Ligacoes ligacoes = new Ligacoes(origem, destino, distancia);
+                    ligacoes.NomeArquivo = dlgLigacoes.FileName;
+                    arvore.Atual.Info.Ligacao.InserirEmOrdem(ligacoes);
+                    MessageBox.Show("Inclusão feita com sucesso!");
+                    Preencher();
+                    pcMapa.Invalidate();
+                    pcArvore.Invalidate();
+                }
+
+                else
+                    MessageBox.Show("Não foi possível incluir o caminho!");
+            }
+        }
+
+        private void btnExcluirCaminho_Click(object sender, EventArgs e)
+        {
+            string origem = txtOrigem.Text.Trim();
+            string destino = txtDestino.Text.Trim();
+
+            if (origem == "" || destino == "")
+                MessageBox.Show("Erro! Verifique se os campos estão preenchidos corretamente.");
+
+            else
+            {
+                if (arvore.Existe(new Cidade(destino)) && arvore.Existe(new Cidade(origem)))
+                {
+                    if (arvore.Atual.Info.Ligacao.RemoverDado(new Ligacoes(origem, destino)))
+                    {
+                        LimparCampos();
+                        MessageBox.Show("Caminho removido com sucesso!!");
+                        Preencher();
+                        pcMapa.Invalidate();
+                        pcMapa.Invalidate();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao remover caminho. Caminho não encontrado!");
+                    }
+                }
+                else
+                    MessageBox.Show("Não foi possível excluir o caminho!");
+            }
+        }
+
+        private void btnAlterarCaminho_Click(object sender, EventArgs e)
+        {
+            string origem = txtOrigem.Text.Trim();
+            string destino = txtDestino.Text.Trim();
+
+            // confere se o nome está vazio, se der true mostra a mensagem de erro
+            if (string.IsNullOrEmpty(origem) && string.IsNullOrEmpty(destino))
+            {
+                MessageBox.Show("Campos vazios!");
+                return;
+            }
+            else
+            {
+                int distancia = (int)nudDistancia2.Value;
+
+                if (distancia == 0)
+                    MessageBox.Show("Valor inválido para distancia!");
+
+                else
+                {
+                    if (arvore.Existe(new Cidade(destino)) && arvore.Existe(new Cidade(origem)))
+                    {
+                        Ligacoes ligacao = new Ligacoes(origem, destino, distancia);
+                        ligacao.NomeArquivo = dlgLigacoes.FileName;
+
+                        if (arvore.Atual.Info.Ligacao.RemoverDado(ligacao))
+                        {
+                            arvore.Atual.Info.Ligacao.InserirEmOrdem(ligacao);
+                            MessageBox.Show("Caminho alterado com sucesso!");
+                            Preencher();
+                            pcMapa.Invalidate();
+                            pcMapa.Invalidate();
+                        }
+
+                        else
+                            MessageBox.Show("Não foi possível alterar o caminho!");
+                    }
+                }
+            }
         }
     }
 }

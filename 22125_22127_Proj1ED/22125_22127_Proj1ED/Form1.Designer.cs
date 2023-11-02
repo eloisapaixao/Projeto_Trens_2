@@ -53,9 +53,11 @@ namespace _22125_22127_Proj1ED
             this.tbCidades = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnIncluirCaminho = new System.Windows.Forms.Button();
+            this.btnAlterarCaminho = new System.Windows.Forms.Button();
             this.txtDestino = new System.Windows.Forms.TextBox();
             this.txtOrigem = new System.Windows.Forms.TextBox();
-            this.btnIncluirCaminho = new System.Windows.Forms.Button();
+            this.btnExcluirCaminho = new System.Windows.Forms.Button();
             this.nudDistancia2 = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -73,12 +75,12 @@ namespace _22125_22127_Proj1ED
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.btnSalvar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAlterar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.btnSair = new System.Windows.Forms.ToolStripButton();
             this.dlgLigacoes = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.btnAlterar = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).BeginInit();
@@ -289,9 +291,11 @@ namespace _22125_22127_Proj1ED
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.btnIncluirCaminho);
+            this.groupBox2.Controls.Add(this.btnAlterarCaminho);
             this.groupBox2.Controls.Add(this.txtDestino);
             this.groupBox2.Controls.Add(this.txtOrigem);
-            this.groupBox2.Controls.Add(this.btnIncluirCaminho);
+            this.groupBox2.Controls.Add(this.btnExcluirCaminho);
             this.groupBox2.Controls.Add(this.nudDistancia2);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label14);
@@ -304,6 +308,28 @@ namespace _22125_22127_Proj1ED
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Caminhos";
+            // 
+            // btnIncluirCaminho
+            // 
+            this.btnIncluirCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnIncluirCaminho.Location = new System.Drawing.Point(30, 108);
+            this.btnIncluirCaminho.Name = "btnIncluirCaminho";
+            this.btnIncluirCaminho.Size = new System.Drawing.Size(67, 50);
+            this.btnIncluirCaminho.TabIndex = 53;
+            this.btnIncluirCaminho.Text = "Incluir Caminho";
+            this.btnIncluirCaminho.UseVisualStyleBackColor = true;
+            this.btnIncluirCaminho.Click += new System.EventHandler(this.btnIncluirCaminho_Click);
+            // 
+            // btnAlterarCaminho
+            // 
+            this.btnAlterarCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAlterarCaminho.Location = new System.Drawing.Point(206, 108);
+            this.btnAlterarCaminho.Name = "btnAlterarCaminho";
+            this.btnAlterarCaminho.Size = new System.Drawing.Size(67, 50);
+            this.btnAlterarCaminho.TabIndex = 52;
+            this.btnAlterarCaminho.Text = "Alterar Caminho";
+            this.btnAlterarCaminho.UseVisualStyleBackColor = true;
+            this.btnAlterarCaminho.Click += new System.EventHandler(this.btnAlterarCaminho_Click);
             // 
             // txtDestino
             // 
@@ -325,16 +351,16 @@ namespace _22125_22127_Proj1ED
             this.txtOrigem.Size = new System.Drawing.Size(125, 20);
             this.txtOrigem.TabIndex = 50;
             // 
-            // btnIncluirCaminho
+            // btnExcluirCaminho
             // 
-            this.btnIncluirCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnIncluirCaminho.Location = new System.Drawing.Point(108, 108);
-            this.btnIncluirCaminho.Name = "btnIncluirCaminho";
-            this.btnIncluirCaminho.Size = new System.Drawing.Size(67, 50);
-            this.btnIncluirCaminho.TabIndex = 49;
-            this.btnIncluirCaminho.Text = "Incluir Caminho";
-            this.btnIncluirCaminho.UseVisualStyleBackColor = true;
-            this.btnIncluirCaminho.Click += new System.EventHandler(this.btnIncluirCaminho_Click);
+            this.btnExcluirCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExcluirCaminho.Location = new System.Drawing.Point(118, 108);
+            this.btnExcluirCaminho.Name = "btnExcluirCaminho";
+            this.btnExcluirCaminho.Size = new System.Drawing.Size(67, 50);
+            this.btnExcluirCaminho.TabIndex = 49;
+            this.btnExcluirCaminho.Text = "Excluir Caminho";
+            this.btnExcluirCaminho.UseVisualStyleBackColor = true;
+            this.btnExcluirCaminho.Click += new System.EventHandler(this.btnExcluirCaminho_Click);
             // 
             // nudDistancia2
             // 
@@ -460,7 +486,7 @@ namespace _22125_22127_Proj1ED
             this.btnSair});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(378, 38);
+            this.toolStrip1.Size = new System.Drawing.Size(347, 38);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -514,6 +540,17 @@ namespace _22125_22127_Proj1ED
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 38);
             // 
+            // btnAlterar
+            // 
+            this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
+            this.btnAlterar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(46, 35);
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            // 
             // btnExcluir
             // 
             this.btnExcluir.Image = global::_22125_22127_Proj1ED.Properties.Resources.lixo;
@@ -555,17 +592,6 @@ namespace _22125_22127_Proj1ED
             this.label11.Size = new System.Drawing.Size(192, 13);
             this.label11.TabIndex = 6;
             this.label11.Text = "Km do caminho selecionado (xxxxx Km)";
-            // 
-            // btnAlterar
-            // 
-            this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
-            this.btnAlterar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(46, 35);
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // frmMapa
             // 
@@ -635,7 +661,7 @@ namespace _22125_22127_Proj1ED
         private Label label1;
         private Label label11;
         private GroupBox groupBox2;
-        private Button btnIncluirCaminho;
+        private Button btnExcluirCaminho;
         private NumericUpDown nudDistancia2;
         private Label label12;
         private Label label14;
@@ -649,6 +675,8 @@ namespace _22125_22127_Proj1ED
         private DataGridViewTextBoxColumn c2;
         private DataGridViewTextBoxColumn c3;
         private ToolStripButton btnAlterar;
+        private Button btnIncluirCaminho;
+        private Button btnAlterarCaminho;
     }
 }
 
