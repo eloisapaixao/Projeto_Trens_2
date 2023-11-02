@@ -17,7 +17,7 @@ public class NoLista<Dado>
         prox = ponteiro;
     }
 
-    public Dado Info
+    public Dado Info    
     {
         get
         {
@@ -30,6 +30,11 @@ public class NoLista<Dado>
         }
     }
 
+    public NoLista(Dado dado)
+    {
+        Info = dado;
+        Prox = null;
+    }
     public NoLista<Dado> Prox
     {
         get

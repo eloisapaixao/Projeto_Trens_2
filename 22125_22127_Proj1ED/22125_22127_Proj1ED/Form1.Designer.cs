@@ -47,6 +47,9 @@ namespace _22125_22127_Proj1ED
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dlgSalvar = new System.Windows.Forms.OpenFileDialog();
             this.dgvRotas = new System.Windows.Forms.DataGridView();
+            this.c1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbCidades = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -75,9 +78,6 @@ namespace _22125_22127_Proj1ED
             this.dlgLigacoes = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.c1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).BeginInit();
@@ -239,6 +239,24 @@ namespace _22125_22127_Proj1ED
             this.dgvRotas.Size = new System.Drawing.Size(490, 134);
             this.dgvRotas.TabIndex = 4;
             // 
+            // c1
+            // 
+            this.c1.HeaderText = "Destino";
+            this.c1.Name = "c1";
+            this.c1.Width = 150;
+            // 
+            // c2
+            // 
+            this.c2.HeaderText = "Distancia";
+            this.c2.Name = "c2";
+            this.c2.Width = 150;
+            // 
+            // c3
+            // 
+            this.c3.HeaderText = "Origem";
+            this.c3.Name = "c3";
+            this.c3.Width = 150;
+            // 
             // tbCidades
             // 
             this.tbCidades.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -251,6 +269,7 @@ namespace _22125_22127_Proj1ED
             this.tbCidades.SelectedIndex = 0;
             this.tbCidades.Size = new System.Drawing.Size(825, 547);
             this.tbCidades.TabIndex = 7;
+            this.tbCidades.SelectedIndexChanged += new System.EventHandler(this.tbCidades_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -439,7 +458,7 @@ namespace _22125_22127_Proj1ED
             this.btnSair});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(301, 38);
+            this.toolStrip1.Size = new System.Drawing.Size(332, 38);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -485,6 +504,7 @@ namespace _22125_22127_Proj1ED
             this.btnSalvar.Size = new System.Drawing.Size(42, 35);
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // toolStripSeparator3
             // 
@@ -530,24 +550,6 @@ namespace _22125_22127_Proj1ED
             this.label11.Size = new System.Drawing.Size(192, 13);
             this.label11.TabIndex = 6;
             this.label11.Text = "Km do caminho selecionado (xxxxx Km)";
-            // 
-            // c1
-            // 
-            this.c1.HeaderText = "Destino";
-            this.c1.Name = "c1";
-            this.c1.Width = 150;
-            // 
-            // c2
-            // 
-            this.c2.HeaderText = "Distancia";
-            this.c2.Name = "c2";
-            this.c2.Width = 150;
-            // 
-            // c3
-            // 
-            this.c3.HeaderText = "Origem";
-            this.c3.Name = "c3";
-            this.c3.Width = 150;
             // 
             // frmMapa
             // 

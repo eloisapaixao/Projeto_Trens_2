@@ -46,37 +46,35 @@ namespace _22125_22127_Proj1ED
             if (dlgAbrir.ShowDialog() == DialogResult.OK)
             {
                 arvore = new Arvore<Cidade>();
-                //aqui teremos o arquivo de dados e montaremos a árvore
                 arvore.LerArquivoDeRegistros(dlgAbrir.FileName);
+
                 if (dlgLigacoes.ShowDialog() == DialogResult.OK)
                 {
-                    // instanciamos um fluxo de arquivo
-                    FileStream fluxoCaminhos = new FileStream(dlgLigacoes.FileName, FileMode.Open);
-                    // e um leitor do arquivo binário
-                    BinaryReader arquivoCaminhos = new BinaryReader(fluxoCaminhos);
+                    FileStream cidadesLigacoes = new FileStream(dlgLigacoes.FileName, FileMode.Open);
+                    BinaryReader arquivoLigacoes = new BinaryReader(cidadesLigacoes);
 
-                    // percorre cada registro dentre os registros do arquivo de caminho
                     for (int registro = 0;
-                        registro < (int)fluxoCaminhos.Length / new Ligacoes().TamanhoRegistro;
+                        registro < (int)cidadesLigacoes.Length / new Ligacoes().TamanhoRegistro;
                         registro++)
                     {
                         Ligacoes ligacoes = new Ligacoes();
-                        ligacoes.LerRegistro(arquivoCaminhos, registro);
+                        ligacoes.LerRegistro(arquivoLigacoes, registro);
                         ligacoes.NomeArquivo = dlgLigacoes.FileName;
 
-                        //Os dados do arquivo não estão sendo armazenados na lista lisgações
                         if (arvore.Existe(new Cidade(ligacoes.Origem)))
-                            arvore.Atual.Info.Ligacoes.InserirEmOrdem(ligacoes);
+                            arvore.Atual.Info.Ligacao.InserirEmOrdem(ligacoes);
                     }
+                    cidadesLigacoes.SetLength(0);
+                    arquivoLigacoes.Close();
+                    cidadesLigacoes.Close();
                 }
 
                 if (arvore.Tamanho() > 0)
                 {
                     cidadeSelecionada = arvore.Raiz.Info;
-                    PopularCampos();
+                    Preencher();
                 }
             }
-            pcMapa.Invalidate();
         }
 
         private void pcArvore_Paint(object sender, PaintEventArgs e)
@@ -96,15 +94,15 @@ namespace _22125_22127_Proj1ED
             else
             {
                 // se ambas as cidades existem
-                if (arvore.Existe(new Cidade(destino)) && arvore.Existe(new Cidade(origem)))
+                if (arvore.Existe(new Cidade(origem)) && arvore.Existe(new Cidade(destino)))
                 {
-                    Ligacoes ligacoes = new Ligacoes(origem, origem, distancia);
-                    ligacoes.NomeArquivo = dlgAbrir.FileName;
-                    arvore.Atual.Info.Ligacoes.InserirEmOrdem(ligacoes);
+                    Ligacoes ligacoes = new Ligacoes(origem, destino, distancia);
+                    ligacoes.NomeArquivo = dlgLigacoes.FileName;
+                    arvore.Atual.Info.Ligacao.InserirEmOrdem(ligacoes);
                     MessageBox.Show("Inclusão feita com sucesso!");
-                    PopularCampos();
+                    Preencher();
                     pcMapa.Invalidate();
-                    pcMapa.Invalidate();
+                    pcArvore.Invalidate();
                 }
 
                 else
@@ -163,8 +161,9 @@ namespace _22125_22127_Proj1ED
                     cidadeSelecionada = cidade;
                     MessageBox.Show("Inclusão feita com sucesso!");
                     LimparCampos();
+                    Preencher();
                     pcArvore.Invalidate();
-                    pcArvore.Invalidate();
+                    pcMapa.Invalidate();
                 }
 
                 else
@@ -172,7 +171,7 @@ namespace _22125_22127_Proj1ED
             }
         }
 
-        private void PopularCampos()
+        private void Preencher()
         {
             if (cidadeSelecionada != null)
             {
@@ -182,28 +181,28 @@ namespace _22125_22127_Proj1ED
 
                 dgvRotas.Rows.Clear();
 
-                if (!cidadeSelecionada.Ligacoes.EstaVazia)
+                if (!cidadeSelecionada.Ligacao.EstaVazia)
                 {
                     //QuantosNos está vazio porque os dados não estão sendo armazenados na lista
-                    dgvRotas.RowCount = cidadeSelecionada.Ligacoes.QuantosNos;
+                        dgvRotas.RowCount = cidadeSelecionada.Ligacao.QuantosNos;
 
-                    Ligacoes primeiroCaminho = cidadeSelecionada.Ligacoes.Primeiro.Info;
+                    Ligacoes lig = cidadeSelecionada.Ligacao.Primeiro.Info;
 
-                    txtDestino.Text = primeiroCaminho.Destino;
-                    txtOrigem.Text = primeiroCaminho.Origem;
+                    lig.Destino = txtDestino.Text;
+                    lig.Origem = txtOrigem.Text;
 
-                    nudDistancia2.Value = primeiroCaminho.Distancia;
+                    lig.Distancia = (int) nudDistancia2.Value;
 
-                    cidadeSelecionada.Ligacoes.IniciarPercursoSequencial();
+                    cidadeSelecionada.Ligacao.IniciarPercursoSequencial();
 
                     int linha = 0;
-                    while (cidadeSelecionada.Ligacoes.PodePercorrer())
+                    while (cidadeSelecionada.Ligacao.PodePercorrer())
                     {
-                        Ligacoes caminho = cidadeSelecionada.Ligacoes.Atual.Info;
+                        Ligacoes caminho = cidadeSelecionada.Ligacao.Atual.Info;
 
                         dgvRotas.Rows[linha].Cells[0].Value = caminho.Destino;
                         dgvRotas.Rows[linha].Cells[1].Value = caminho.Distancia;
-                        dgvRotas.Rows[linha++].Cells[3].Value = caminho.Origem;
+                        dgvRotas.Rows[linha++].Cells[2].Value = caminho.Origem;
                     }
                 }
             }
@@ -223,12 +222,12 @@ namespace _22125_22127_Proj1ED
                 if (arvore.Existe(new Cidade(destino)) && arvore.Existe(new Cidade(origem)))
                 {
                     // se a exclusão deu certo
-                    if (arvore.Atual.Info.Ligacoes.ExisteDado(new Ligacoes(origem, destino)))
+                    if (arvore.Atual.Info.Ligacao.ExisteDado(new Ligacoes(origem, destino)))
                     {
-                        Ligacoes ligacoes = arvore.Atual.Info.Ligacoes.Atual.Info;
+                        Ligacoes ligacoes = arvore.Atual.Info.Ligacao.Atual.Info;
                         nudDistancia2.Value = ligacoes.Distancia;
                         pcMapa.Invalidate();
-                        pcMapa.Invalidate();
+                        pcArvore.Invalidate();
                     }
 
                     else
@@ -241,6 +240,16 @@ namespace _22125_22127_Proj1ED
                 else
                     MessageBox.Show("Caminho inválido!");
             }
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbCidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

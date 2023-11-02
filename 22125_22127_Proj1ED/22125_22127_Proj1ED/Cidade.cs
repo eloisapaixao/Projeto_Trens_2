@@ -24,7 +24,7 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
     string nome;
     double y, x;
     ListaSimples<Ligacoes> ligacoes;
-    internal ListaSimples<Ligacoes> Ligacoes { get => ligacoes; set => ligacoes = value; }
+    internal ListaSimples<Ligacoes> Ligacao { get => ligacoes; set => ligacoes = value; }
 
     public string Nome
     {
@@ -43,7 +43,7 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
     
     public Cidade() 
     {
-        Ligacoes = new ListaSimples<Ligacoes>();
+        Ligacao = new ListaSimples<Ligacoes>();
     }
 
     public Cidade(string nome, double x, double y)
@@ -51,7 +51,7 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
         this.nome = nome;
         this.x = x;
         this.y = y;
-        Ligacoes = new ListaSimples<Ligacoes>();
+        Ligacao = new ListaSimples<Ligacoes>();
     }
 
     public int CompareTo(Cidade outro)

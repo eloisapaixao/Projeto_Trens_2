@@ -72,10 +72,7 @@ public class ListaSimples<Dado>
         }
     }
 
-    public int QuantosNos
-    {
-        get { return quantosNos; }
-    }
+    public int QuantosNos { get => quantosNos; set => quantosNos = value; }
 
     public NoLista<Dado> Atual
     {
@@ -93,6 +90,7 @@ public class ListaSimples<Dado>
             ultimo = novoNo;
 
         primeiro = novoNo;
+        quantosNos++;   
     }
 
     public void InserirAposFim(Dado novoDado)
@@ -192,6 +190,9 @@ public class ListaSimples<Dado>
             else
             if (anterior == null && atual != null)
                 InserirAntesDoInicio(dados); // liga novo antes do primeiro
+            else
+                if (anterior != null && atual == null)
+                InserirAposFim(dados);
             else
                 InserirNoMeio(dados); // insere entre os nós anterior e atual
 
