@@ -26,6 +26,12 @@ internal class Ligacoes : IComparable<Ligacoes>, IRegistro<Ligacoes>
         this.distancia = distancia;
     }
 
+    public Ligacoes(string origem, string destino)
+    {
+        this.origem = origem;
+        this.destino = destino;
+    }
+
     public Ligacoes() { }
 
     public string Origem { get => origem; set => origem = value; }

@@ -58,8 +58,6 @@ namespace _22125_22127_Proj1ED
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnIncluirCaminho = new System.Windows.Forms.Button();
-            this.cbDestino2 = new System.Windows.Forms.ComboBox();
-            this.cbOrigem2 = new System.Windows.Forms.ComboBox();
             this.nudDistancia2 = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -82,6 +80,8 @@ namespace _22125_22127_Proj1ED
             this.dlgLigacoes = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.txtOrigem = new System.Windows.Forms.TextBox();
+            this.txtDestino = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).BeginInit();
@@ -130,6 +130,12 @@ namespace _22125_22127_Proj1ED
             this.nudCoordenadaY.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudCoordenadaY.DecimalPlaces = 5;
+            this.nudCoordenadaY.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            327680});
             this.nudCoordenadaY.Location = new System.Drawing.Point(108, 72);
             this.nudCoordenadaY.Name = "nudCoordenadaY";
             this.nudCoordenadaY.Size = new System.Drawing.Size(191, 20);
@@ -152,6 +158,12 @@ namespace _22125_22127_Proj1ED
             this.nudCoordenadaX.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudCoordenadaX.DecimalPlaces = 5;
+            this.nudCoordenadaX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            327680});
             this.nudCoordenadaX.Location = new System.Drawing.Point(108, 47);
             this.nudCoordenadaX.Name = "nudCoordenadaX";
             this.nudCoordenadaX.Size = new System.Drawing.Size(191, 20);
@@ -307,9 +319,9 @@ namespace _22125_22127_Proj1ED
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.txtDestino);
+            this.groupBox2.Controls.Add(this.txtOrigem);
             this.groupBox2.Controls.Add(this.btnIncluirCaminho);
-            this.groupBox2.Controls.Add(this.cbDestino2);
-            this.groupBox2.Controls.Add(this.cbOrigem2);
             this.groupBox2.Controls.Add(this.nudDistancia2);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label14);
@@ -333,28 +345,6 @@ namespace _22125_22127_Proj1ED
             this.btnIncluirCaminho.Text = "Incluir Caminho";
             this.btnIncluirCaminho.UseVisualStyleBackColor = true;
             this.btnIncluirCaminho.Click += new System.EventHandler(this.btnIncluirCaminho_Click);
-            // 
-            // cbDestino2
-            // 
-            this.cbDestino2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbDestino2.FormattingEnabled = true;
-            this.cbDestino2.Location = new System.Drawing.Point(141, 39);
-            this.cbDestino2.Name = "cbDestino2";
-            this.cbDestino2.Size = new System.Drawing.Size(130, 21);
-            this.cbDestino2.TabIndex = 48;
-            // 
-            // cbOrigem2
-            // 
-            this.cbOrigem2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbOrigem2.FormattingEnabled = true;
-            this.cbOrigem2.Location = new System.Drawing.Point(7, 39);
-            this.cbOrigem2.Name = "cbOrigem2";
-            this.cbOrigem2.Size = new System.Drawing.Size(130, 21);
-            this.cbOrigem2.TabIndex = 47;
             // 
             // nudDistancia2
             // 
@@ -434,6 +424,7 @@ namespace _22125_22127_Proj1ED
             this.pcMapa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcMapa.TabIndex = 2;
             this.pcMapa.TabStop = false;
+            this.pcMapa.Paint += new System.Windows.Forms.PaintEventHandler(this.pcMapa_Paint);
             // 
             // tabPage2
             // 
@@ -478,7 +469,7 @@ namespace _22125_22127_Proj1ED
             this.btnSair});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(301, 38);
+            this.toolStrip1.Size = new System.Drawing.Size(332, 38);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -490,6 +481,7 @@ namespace _22125_22127_Proj1ED
             this.btnProcurar.Size = new System.Drawing.Size(56, 35);
             this.btnProcurar.Text = "Procurar";
             this.btnProcurar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnProcurar.Click += new System.EventHandler(this.btnProcurar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -504,6 +496,7 @@ namespace _22125_22127_Proj1ED
             this.btnNovo.Size = new System.Drawing.Size(40, 35);
             this.btnNovo.Text = "Novo";
             this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // btnCancelar
             // 
@@ -567,6 +560,26 @@ namespace _22125_22127_Proj1ED
             this.label11.Size = new System.Drawing.Size(192, 13);
             this.label11.TabIndex = 6;
             this.label11.Text = "Km do caminho selecionado (xxxxx Km)";
+            // 
+            // txtOrigem
+            // 
+            this.txtOrigem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOrigem.Location = new System.Drawing.Point(10, 39);
+            this.txtOrigem.Name = "txtOrigem";
+            this.txtOrigem.Size = new System.Drawing.Size(125, 20);
+            this.txtOrigem.TabIndex = 50;
+            // 
+            // txtDestino
+            // 
+            this.txtDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDestino.Location = new System.Drawing.Point(145, 39);
+            this.txtDestino.Name = "txtDestino";
+            this.txtDestino.Size = new System.Drawing.Size(125, 20);
+            this.txtDestino.TabIndex = 51;
             // 
             // frmMapa
             // 
@@ -644,8 +657,6 @@ namespace _22125_22127_Proj1ED
         private Label label11;
         private GroupBox groupBox2;
         private Button btnIncluirCaminho;
-        private ComboBox cbDestino2;
-        private ComboBox cbOrigem2;
         private NumericUpDown nudDistancia2;
         private Label label12;
         private Label label14;
@@ -653,6 +664,8 @@ namespace _22125_22127_Proj1ED
         private Label label15;
         private Label label16;
         private PictureBox pcArvore;
+        private TextBox txtDestino;
+        private TextBox txtOrigem;
     }
 }
 

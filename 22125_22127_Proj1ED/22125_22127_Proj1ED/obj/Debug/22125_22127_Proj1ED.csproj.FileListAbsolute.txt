@@ -28,3 +28,6 @@ C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127
 C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.exe.config
 C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.exe
 C:\Users\u22127\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.pdb
+C:\Users\WIN10\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.exe.config
+C:\Users\WIN10\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.exe
+C:\Users\WIN10\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.pdb

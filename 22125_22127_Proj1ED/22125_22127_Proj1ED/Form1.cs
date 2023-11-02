@@ -19,6 +19,7 @@ namespace _22125_22127_Proj1ED
         }
 
         Arvore<Cidade> arvore;
+        private Cidade cidadeSelecionada;
 
         private void btnSair_Click(object sender, EventArgs e)
         {
@@ -31,7 +32,15 @@ namespace _22125_22127_Proj1ED
             nudCoordenadaX.Value = 0;
             nudCoordenadaY.Value = 0;
         }
-
+        private void LimparCampos()
+        {
+            txtNome.Clear();
+            txtDestino.Clear();
+            txtOrigem.Clear();
+            nudCoordenadaX.Value = nudCoordenadaY.Value = 0;
+            nudDistancia2.Value = 0;
+            dgvRotas.Rows.Clear();
+        }
         private void frmMapa_Load_1(object sender, EventArgs e)
         {
             if (dlgAbrir.ShowDialog() == DialogResult.OK)
@@ -70,12 +79,159 @@ namespace _22125_22127_Proj1ED
 
         private void btnIncluirCaminho_Click(object sender, EventArgs e)
         {
+            string origem = txtOrigem.Text.Trim();
+            string destino = txtDestino.Text.Trim();
+            int distancia = (int)nudDistancia2.Value;
 
+            if (origem == "" || destino == "" || distancia == 0)
+                MessageBox.Show("Erro! Verifique se os campos estão preenchidos corretamente.");
+
+            else
+            {
+                // se ambas as cidades existem
+                if (arvore.Existe(new Cidade(destino)) && arvore.Existe(new Cidade(origem)))
+                {
+                    Ligacoes ligacoes = new Ligacoes(origem, origem, distancia);
+                    ligacoes.NomeArquivo = dlgAbrir.FileName;
+                    arvore.Atual.Info.Ligacoes.InserirEmOrdem(ligacoes);
+                    MessageBox.Show("Inclusão feita com sucesso!");
+                    PopularCampos();
+                    pcMapa.Invalidate();
+                    pcMapa.Invalidate();
+                }
+
+                else
+                    MessageBox.Show("Não foi possível incluir o caminho!");
+            }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void pcMapa_Paint(object sender, PaintEventArgs e)
+        {
+            Percorrer(arvore.Raiz);
+
+            void Percorrer(NoArvore<Cidade> noCidade)
+            {
+                if (noCidade == null)
+                    return;
+
+                Cidade cidade = noCidade.Info;
+
+                int x = (int)(cidade.X * pcMapa.Width);
+                int y = (int)(cidade.Y * pcMapa.Height);
+
+                // a cidade selecionada fica em destaque na cor vermelha, as demais
+                // permanecem na cor preta
+                Brush brush = cidade == cidadeSelecionada ? Brushes.Black : Brushes.Red;
+
+                e.Graphics.FillEllipse(brush, new Rectangle(x, y, 6, 6));
+
+                e.Graphics.DrawString(cidade.Nome, new Font("Arial", 10), brush, x - cidade.Nome.Length * 2 - 10, y - 15);
+
+                Percorrer(noCidade.Esq);
+                Percorrer(noCidade.Dir);
+            }
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            string nomeCidade = txtNome.Text.Trim();
+            double xCidade = (double)nudCoordenadaX.Value;
+            double yCidade = (double)nudCoordenadaY.Value;
+
+            if (nomeCidade == "" || xCidade == 0 || yCidade == 0)
+                MessageBox.Show("Erro! Verifique se os campos estão preenchidos corretamente.");
+
+            else
+            {
+                Cidade cidade = new Cidade(nomeCidade, xCidade, yCidade);
+
+                if (!arvore.Existe(cidade))
+                {
+                    arvore.IncluirNovoRegistro(cidade);
+                    MessageBox.Show("Inclusão feita com sucesso!");
+                    LimparCampos();
+                    pcArvore.Invalidate();
+                    pcArvore.Invalidate();
+                }
+
+                else
+                    MessageBox.Show("Erro ao incluir a cidade. Verifique se a cidade já existe!");
+            }
+        }
+
+        private void PopularCampos()
+        {
+            if (cidadeSelecionada != null)
+            {
+                txtNome.Text = cidadeSelecionada.Nome;
+                nudCoordenadaX.Value = (decimal)cidadeSelecionada.X;
+                nudCoordenadaY.Value = (decimal)cidadeSelecionada.Y;
+
+                dgvRotas.Rows.Clear();
+
+                if (!cidadeSelecionada.Ligacoes.EstaVazia)
+                {
+                    dgvRotas.RowCount = cidadeSelecionada.Ligacoes.QuantosNos;
+
+                    Ligacoes primeiroCaminho = cidadeSelecionada.Ligacoes.Primeiro.Info;
+
+                    txtDestino.Text = primeiroCaminho.Destino;
+                    txtOrigem.Text = primeiroCaminho.Origem;
+
+                    nudDistancia2.Value = primeiroCaminho.Distancia;
+
+                    cidadeSelecionada.Ligacoes.IniciarPercursoSequencial();
+
+                    int linha = 0;
+                    while (cidadeSelecionada.Ligacoes.PodePercorrer())
+                    {
+                        Ligacoes caminho = cidadeSelecionada.Ligacoes.Atual.Info;
+
+                        dgvRotas.Rows[linha].Cells[0].Value = caminho.Destino;
+                        dgvRotas.Rows[linha].Cells[1].Value = caminho.Distancia;
+                        dgvRotas.Rows[linha++].Cells[3].Value = caminho.Origem;
+                    }
+                }
+            }
+        }
+
+        private void btnProcurar_Click(object sender, EventArgs e)
+        {
+            string origem = txtOrigem.Text.Trim();
+            string destino = txtDestino.Text.Trim();
+
+            if (origem == "" || destino == "")
+                MessageBox.Show("Erro! Verifique se os campos estão preenchidos corretamente.");
+
+            else
+            {
+                // se ambas as cidades existem
+                if (arvore.Existe(new Cidade(destino)) && arvore.Existe(new Cidade(origem)))
+                {
+                    // se a exclusão deu certo
+                    if (arvore.Atual.Info.Ligacoes.ExisteDado(new Ligacoes(origem, destino)))
+                    {
+                        Ligacoes ligacoes = arvore.Atual.Info.Ligacoes.Atual.Info;
+                        nudDistancia2.Value = ligacoes.Distancia;
+                        pcMapa.Invalidate();
+                        pcMapa.Invalidate();
+                    }
+
+                    else
+                    {
+                        LimparCampos();
+                        MessageBox.Show("Erro! Ligação não localizada!");
+                    }
+                }
+
+                else
+                    MessageBox.Show("Caminho inválido!");
+            }
         }
     }
 }
