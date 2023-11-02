@@ -244,12 +244,97 @@ namespace _22125_22127_Proj1ED
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-
+            if (dlgSalvar.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    arvore.GravarArquivoDeRegistros(dlgSalvar.FileName);
+                }
+                catch (IOException)
+                {
+                    Console.WriteLine("Erro de leitura no arquivo");
+                }
+            }
         }
 
         private void tbCidades_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            string cidadeARemover = txtNome.Text.Trim();
+
+            if (cidadeARemover == "")
+                MessageBox.Show("Campo cidade está vazio, preencha-o corretamente!");
+            else
+            {
+                if (arvore.ApagarNo(new Cidade(cidadeARemover)))
+                {
+                    cidadeSelecionada = arvore.Raiz.Info;
+                    LimparCampos();
+                    MessageBox.Show("Cidade removida com sucesso!!");
+                    Preencher();
+                    pcMapa.Invalidate();
+                    pcMapa.Invalidate();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao remover cidade. Cidade não encontrada!");
+                }
+            }
+        }
+
+        private void btnSair_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            string nome = txtNome.Text.Trim();
+
+            // confere se o nome está vazio, se der true mostra a mensagem de erro
+            if (nome == "")
+            {
+                MessageBox.Show("Campo do nome vazio!");
+            }
+
+            double cidadeX = (double)nudCoordenadaX.Value;
+            double cidadeY = (double)nudCoordenadaY.Value;
+
+            if (cidadeX == 0 || cidadeY == 0)
+            {
+                MessageBox.Show("Coordenadas inválidas!");
+                return;
+            }
+
+            Cidade cidade = new Cidade(nome);
+            cidade.X = cidadeX;
+            cidade.Y = cidadeY;
+
+            if (!arvore.Existe(cidade))
+            {
+                MessageBox.Show("Cidade inexistente!");
+                return;
+            }
+
+            cidade.Ligacao = arvore.Atual.Info.Ligacao;
+
+            if (arvore.ApagarNo(cidade))
+            {
+                arvore.IncluirNovoRegistro(cidade);
+                MessageBox.Show("Cidade alterada com sucesso!");
+                LimparCampos();
+                Preencher();
+                pcMapa.Invalidate();
+                pcMapa.Invalidate();
+            }
+            else
+            {
+                MessageBox.Show("Não foi possível alterar a cidade!");
+            }
         }
     }
 }

@@ -78,6 +78,7 @@ namespace _22125_22127_Proj1ED
             this.dlgLigacoes = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.btnAlterar = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).BeginInit();
@@ -453,12 +454,13 @@ namespace _22125_22127_Proj1ED
             this.btnCancelar,
             this.btnSalvar,
             this.toolStripSeparator3,
+            this.btnAlterar,
             this.btnExcluir,
             this.toolStripSeparator5,
             this.btnSair});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(332, 38);
+            this.toolStrip1.Size = new System.Drawing.Size(378, 38);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -519,6 +521,7 @@ namespace _22125_22127_Proj1ED
             this.btnExcluir.Size = new System.Drawing.Size(46, 35);
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnSair
             // 
@@ -528,6 +531,7 @@ namespace _22125_22127_Proj1ED
             this.btnSair.Size = new System.Drawing.Size(30, 35);
             this.btnSair.Text = "Sair";
             this.btnSair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click_1);
             // 
             // dlgLigacoes
             // 
@@ -550,6 +554,17 @@ namespace _22125_22127_Proj1ED
             this.label11.Size = new System.Drawing.Size(192, 13);
             this.label11.TabIndex = 6;
             this.label11.Text = "Km do caminho selecionado (xxxxx Km)";
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
+            this.btnAlterar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(46, 35);
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // frmMapa
             // 
@@ -632,6 +647,7 @@ namespace _22125_22127_Proj1ED
         private DataGridViewTextBoxColumn c1;
         private DataGridViewTextBoxColumn c2;
         private DataGridViewTextBoxColumn c3;
+        private ToolStripButton btnAlterar;
     }
 }
 
