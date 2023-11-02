@@ -52,13 +52,13 @@ namespace _22125_22127_Proj1ED
             this.tbCidades = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnProcurarCaminho = new System.Windows.Forms.Button();
             this.btnIncluirCaminho = new System.Windows.Forms.Button();
             this.btnAlterarCaminho = new System.Windows.Forms.Button();
             this.txtDestino = new System.Windows.Forms.TextBox();
             this.txtOrigem = new System.Windows.Forms.TextBox();
             this.btnExcluirCaminho = new System.Windows.Forms.Button();
             this.nudDistancia2 = new System.Windows.Forms.NumericUpDown();
-            this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -80,7 +80,6 @@ namespace _22125_22127_Proj1ED
             this.dlgLigacoes = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.btnProcurarCaminho = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).BeginInit();
@@ -106,7 +105,7 @@ namespace _22125_22127_Proj1ED
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(3, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(312, 285);
+            this.groupBox1.Size = new System.Drawing.Size(312, 130);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cidades";
@@ -286,7 +285,6 @@ namespace _22125_22127_Proj1ED
             this.groupBox2.Controls.Add(this.txtOrigem);
             this.groupBox2.Controls.Add(this.btnExcluirCaminho);
             this.groupBox2.Controls.Add(this.nudDistancia2);
-            this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.comboBox3);
             this.groupBox2.Controls.Add(this.label15);
@@ -297,6 +295,16 @@ namespace _22125_22127_Proj1ED
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Caminhos";
+            // 
+            // btnProcurarCaminho
+            // 
+            this.btnProcurarCaminho.Location = new System.Drawing.Point(237, 108);
+            this.btnProcurarCaminho.Name = "btnProcurarCaminho";
+            this.btnProcurarCaminho.Size = new System.Drawing.Size(68, 50);
+            this.btnProcurarCaminho.TabIndex = 54;
+            this.btnProcurarCaminho.Text = "Procurar Caminho";
+            this.btnProcurarCaminho.UseVisualStyleBackColor = true;
+            this.btnProcurarCaminho.Click += new System.EventHandler(this.btnProcurarCaminho_Click);
             // 
             // btnIncluirCaminho
             // 
@@ -360,18 +368,6 @@ namespace _22125_22127_Proj1ED
             this.nudDistancia2.Name = "nudDistancia2";
             this.nudDistancia2.Size = new System.Drawing.Size(244, 20);
             this.nudDistancia2.TabIndex = 38;
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(142, 72);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 13);
-            this.label12.TabIndex = 44;
-            this.label12.Text = "Tempo:";
             // 
             // label14
             // 
@@ -582,16 +578,6 @@ namespace _22125_22127_Proj1ED
             this.label11.TabIndex = 6;
             this.label11.Text = "Km do caminho selecionado (xxxxx Km)";
             // 
-            // btnProcurarCaminho
-            // 
-            this.btnProcurarCaminho.Location = new System.Drawing.Point(237, 108);
-            this.btnProcurarCaminho.Name = "btnProcurarCaminho";
-            this.btnProcurarCaminho.Size = new System.Drawing.Size(68, 50);
-            this.btnProcurarCaminho.TabIndex = 54;
-            this.btnProcurarCaminho.Text = "Procurar Caminho";
-            this.btnProcurarCaminho.UseVisualStyleBackColor = true;
-            this.btnProcurarCaminho.Click += new System.EventHandler(this.btnProcurarCaminho_Click);
-            // 
             // frmMapa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -661,7 +647,6 @@ namespace _22125_22127_Proj1ED
         private GroupBox groupBox2;
         private Button btnExcluirCaminho;
         private NumericUpDown nudDistancia2;
-        private Label label12;
         private Label label14;
         private ComboBox comboBox3;
         private Label label15;

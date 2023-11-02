@@ -15,10 +15,10 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
     public NoArvore<Dado> Antecessor { get => antecessor; set => antecessor = value; }
 
     private Situacao situacao;
-    public Situacao SituacaoAtual 
-    { 
-        get => situacao; 
-        set => situacao = value; 
+    public Situacao SituacaoAtual
+    {
+        get => situacao;
+        set => situacao = value;
     }
 
     public bool EstaNoInicio => atual == raiz;
@@ -102,7 +102,7 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
         {
             Pen caneta = new Pen(Color.Red);
             xf = (int)Math.Round(x + Math.Cos(angulo) * comprimento);
-            yf = (int)Math.Round(y + Math.Sin(angulo) * comprimento/2);
+            yf = (int)Math.Round(y + Math.Sin(angulo) * comprimento / 2);
             if (primeiraVez)
             {
                 yf = 25;
@@ -131,14 +131,13 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
         {
             if (atual.Info.CompareTo(procurado) == 0)
                 return true;
+
+            antecessor = atual;   // aponta o pai do nó procurado
+
+            if (procurado.CompareTo(atual.Info) < 0)
+                atual = atual.Esq; // Desloca apontador para o ramo à esquerda
             else
-            {
-                antecessor = atual;   // aponta o pai do nó procurado
-                if (procurado.CompareTo(atual.Info) < 0)
-                    atual = atual.Esq; // Desloca apontador para o ramo à esquerda
-                else
-                    atual = atual.Dir; // Desloca apontador para o ramo à direita
-            }
+                atual = atual.Dir; // Desloca apontador para o ramo à direita
         }
         return false; // Se atual == null, a chave não existe
     }
@@ -266,7 +265,7 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
         lista.Items.Clear();
 
         GravarInOrdem(raiz);
-      
+
         void GravarInOrdem(NoArvore<Dado> r)
         {
             if (r != null)
