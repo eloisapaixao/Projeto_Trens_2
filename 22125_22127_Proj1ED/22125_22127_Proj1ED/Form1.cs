@@ -58,7 +58,6 @@ namespace _22125_22127_Proj1ED
                         if (arvore.Existe(new Cidade(ligacoes.Origem)))
                             arvore.Atual.Info.Ligacao.InserirEmOrdem(ligacoes);
                     }
-                    cidadesLigacoes.SetLength(0);
                     arquivoLigacoes.Close();
                     cidadesLigacoes.Close();
                 }
