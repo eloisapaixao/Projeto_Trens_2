@@ -334,30 +334,29 @@ namespace _22125_22127_Proj1ED
         {
             string origem = txtOrigem.Text.Trim();
             string destino = txtDestino.Text.Trim();
-
-            if (origem == "" || destino == "")
+            int distancia = (int)nudDistancia2.Value;
+            if (origem == "" || destino == "" || distancia == 0)
                 MessageBox.Show("Erro! Verifique se os campos estão preenchidos corretamente.");
 
             else
-            {
                 if (arvore.Existe(new Cidade(destino)) && arvore.Existe(new Cidade(origem)))
+            {
+                if (arvore.Atual.Info.Ligacao.RemoverDado(new Ligacoes(origem, destino, distancia)))
                 {
-                    if (arvore.Atual.Info.Ligacao.RemoverDado(new Ligacoes(origem, destino)))
-                    {
-                        LimparCampos();
-                        MessageBox.Show("Caminho removido com sucesso!!");
-                        Preencher();
-                        pcMapa.Invalidate();
-                        pcMapa.Invalidate();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erro ao remover caminho. Caminho não encontrado!");
-                    }
+                    LimparCampos();
+                    MessageBox.Show("Caminho removido com sucesso!!");
+                    Preencher();
+                    pcMapa.Invalidate();
+                    pcMapa.Invalidate();
                 }
                 else
-                    MessageBox.Show("Não foi possível excluir o caminho!");
+                {
+                    MessageBox.Show("Erro ao remover caminho. Caminho não encontrado!");
+                }
             }
+            else
+                MessageBox.Show("Não foi possível excluir o caminho!");
+            
         }
 
         private void btnAlterarCaminho_Click(object sender, EventArgs e)
@@ -379,7 +378,6 @@ namespace _22125_22127_Proj1ED
                     MessageBox.Show("Valor inválido para distancia!");
 
                 else
-                {
                     if (arvore.Existe(new Cidade(destino)) && arvore.Existe(new Cidade(origem)))
                     {
                         Ligacoes ligacao = new Ligacoes(origem, destino, distancia);
@@ -396,7 +394,6 @@ namespace _22125_22127_Proj1ED
 
                         else
                             MessageBox.Show("Não foi possível alterar o caminho!");
-                    }
                 }
             }
         }

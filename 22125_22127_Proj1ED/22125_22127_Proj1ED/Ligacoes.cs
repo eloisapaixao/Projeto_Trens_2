@@ -21,15 +21,15 @@ internal class Ligacoes : IComparable<Ligacoes>, IRegistro<Ligacoes>
 
     public Ligacoes(string origem, string destino, int distancia)
     {
-        this.origem = origem;
-        this.destino = destino;
-        this.distancia = distancia;
+        this.Origem = origem;
+        this.Destino = destino;
+        this.Distancia = distancia;
     }
 
     public Ligacoes(string origem, string destino)
     {
-        this.origem = origem;
-        this.destino = destino;
+        this.Origem = origem;
+        this.Destino = destino;
     }
 
     public Ligacoes() { }
