@@ -123,6 +123,9 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
                          new SolidBrush(Color.Yellow), xf - 23, yf - 7);
         }
     }
+
+
+    
     public bool Existe(Dado procurado)
     {
         antecessor = null;
@@ -141,7 +144,6 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
         }
         return false; // Se atual == null, a chave não existe
     }
-
     public void IncluirNovoRegistro(Dado novoRegistro)
     {
         if (Existe(novoRegistro))
@@ -164,8 +166,8 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
         }
     }
 
-
-    public bool ApagarNo(Dado registroARemover)
+    
+        public bool ApagarNo(Dado registroARemover)
     {
         atual = raiz;
         antecessor = null;

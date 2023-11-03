@@ -48,9 +48,9 @@ class Cidade : IComparable<Cidade>, IRegistro<Cidade>
 
     public Cidade(string nome, double x, double y)
     {
-        this.nome = nome;
-        this.x = x;
-        this.y = y;
+        this.Nome = nome;
+        this.X = x;
+        this.Y = y;
         Ligacao = new ListaSimples<Ligacoes>();
     }
 
