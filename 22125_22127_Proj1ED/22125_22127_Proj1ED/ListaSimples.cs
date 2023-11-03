@@ -371,5 +371,17 @@ public class ListaSimples<Dado>
             ultimo.Prox = null;
         }
     }
+
+    public List<Dado> Lista()
+    {
+        var lista = new List<Dado>();
+        atual = primeiro;
+        while (atual != null)
+        {
+            lista.Add(atual.Info);
+            atual = atual.Prox;
+        }
+        return lista;
+    }
 }
 

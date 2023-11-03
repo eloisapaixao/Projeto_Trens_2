@@ -52,7 +52,6 @@ namespace _22125_22127_Proj1ED
             this.tbCidades = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnProcurarCaminho = new System.Windows.Forms.Button();
             this.btnIncluirCaminho = new System.Windows.Forms.Button();
             this.btnAlterarCaminho = new System.Windows.Forms.Button();
             this.txtDestino = new System.Windows.Forms.TextBox();
@@ -80,6 +79,7 @@ namespace _22125_22127_Proj1ED
             this.dlgLigacoes = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.dlgSalvarCaminho = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).BeginInit();
@@ -278,7 +278,6 @@ namespace _22125_22127_Proj1ED
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox2.Controls.Add(this.btnProcurarCaminho);
             this.groupBox2.Controls.Add(this.btnIncluirCaminho);
             this.groupBox2.Controls.Add(this.btnAlterarCaminho);
             this.groupBox2.Controls.Add(this.txtDestino);
@@ -296,20 +295,10 @@ namespace _22125_22127_Proj1ED
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Caminhos";
             // 
-            // btnProcurarCaminho
-            // 
-            this.btnProcurarCaminho.Location = new System.Drawing.Point(237, 108);
-            this.btnProcurarCaminho.Name = "btnProcurarCaminho";
-            this.btnProcurarCaminho.Size = new System.Drawing.Size(68, 50);
-            this.btnProcurarCaminho.TabIndex = 54;
-            this.btnProcurarCaminho.Text = "Procurar Caminho";
-            this.btnProcurarCaminho.UseVisualStyleBackColor = true;
-            this.btnProcurarCaminho.Click += new System.EventHandler(this.btnProcurarCaminho_Click);
-            // 
             // btnIncluirCaminho
             // 
             this.btnIncluirCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnIncluirCaminho.Location = new System.Drawing.Point(9, 108);
+            this.btnIncluirCaminho.Location = new System.Drawing.Point(42, 108);
             this.btnIncluirCaminho.Name = "btnIncluirCaminho";
             this.btnIncluirCaminho.Size = new System.Drawing.Size(67, 50);
             this.btnIncluirCaminho.TabIndex = 53;
@@ -320,7 +309,7 @@ namespace _22125_22127_Proj1ED
             // btnAlterarCaminho
             // 
             this.btnAlterarCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAlterarCaminho.Location = new System.Drawing.Point(161, 108);
+            this.btnAlterarCaminho.Location = new System.Drawing.Point(194, 108);
             this.btnAlterarCaminho.Name = "btnAlterarCaminho";
             this.btnAlterarCaminho.Size = new System.Drawing.Size(67, 50);
             this.btnAlterarCaminho.TabIndex = 52;
@@ -351,7 +340,7 @@ namespace _22125_22127_Proj1ED
             // btnExcluirCaminho
             // 
             this.btnExcluirCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExcluirCaminho.Location = new System.Drawing.Point(85, 108);
+            this.btnExcluirCaminho.Location = new System.Drawing.Point(118, 108);
             this.btnExcluirCaminho.Name = "btnExcluirCaminho";
             this.btnExcluirCaminho.Size = new System.Drawing.Size(67, 50);
             this.btnExcluirCaminho.TabIndex = 49;
@@ -578,6 +567,10 @@ namespace _22125_22127_Proj1ED
             this.label11.TabIndex = 6;
             this.label11.Text = "Km do caminho selecionado (xxxxx Km)";
             // 
+            // dlgSalvarCaminho
+            // 
+            this.dlgSalvarCaminho.FileName = "openFileDialog1";
+            // 
             // frmMapa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -660,7 +653,7 @@ namespace _22125_22127_Proj1ED
         private ToolStripButton btnAlterar;
         private Button btnIncluirCaminho;
         private Button btnAlterarCaminho;
-        private Button btnProcurarCaminho;
+        private OpenFileDialog dlgSalvarCaminho;
     }
 }
 

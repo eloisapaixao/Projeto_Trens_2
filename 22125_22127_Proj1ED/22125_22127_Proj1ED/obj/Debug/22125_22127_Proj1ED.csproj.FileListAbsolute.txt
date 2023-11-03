@@ -41,3 +41,13 @@ C:\Users\Everton Oliveira\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\2
 C:\Users\Everton Oliveira\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.csproj.CoreCompileInputs.cache
 C:\Users\Everton Oliveira\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.exe
 C:\Users\Everton Oliveira\Documents\GitHub\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.pdb
+C:\Users\Everton Oliveira\Desktop\EloisaEscola\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.exe.config
+C:\Users\Everton Oliveira\Desktop\EloisaEscola\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.exe
+C:\Users\Everton Oliveira\Desktop\EloisaEscola\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\bin\Debug\22125_22127_Proj1ED.pdb
+C:\Users\Everton Oliveira\Desktop\EloisaEscola\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.csproj.AssemblyReference.cache
+C:\Users\Everton Oliveira\Desktop\EloisaEscola\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\_22125_22127_Proj1ED.frmMapa.resources
+C:\Users\Everton Oliveira\Desktop\EloisaEscola\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\_22125_22127_Proj1ED.Properties.Resources.resources
+C:\Users\Everton Oliveira\Desktop\EloisaEscola\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.csproj.GenerateResource.cache
+C:\Users\Everton Oliveira\Desktop\EloisaEscola\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.csproj.CoreCompileInputs.cache
+C:\Users\Everton Oliveira\Desktop\EloisaEscola\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.exe
+C:\Users\Everton Oliveira\Desktop\EloisaEscola\Projeto_Trens_2\22125_22127_Proj1ED\22125_22127_Proj1ED\obj\Debug\22125_22127_Proj1ED.pdb

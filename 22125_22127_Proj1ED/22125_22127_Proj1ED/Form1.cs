@@ -165,9 +165,9 @@ namespace _22125_22127_Proj1ED
                     {
                         Ligacoes caminho = cidadeSelecionada.Ligacao.Atual.Info;
 
-                        dgvRotas.Rows[linha].Cells[0].Value = caminho.Destino;
-                        dgvRotas.Rows[linha].Cells[1].Value = caminho.Distancia;
-                        dgvRotas.Rows[linha++].Cells[2].Value = caminho.Origem;
+                        dgvRotas[linha, 0].Value = caminho.Destino;
+                        dgvRotas[linha, 1].Value = caminho.Distancia;
+                        dgvRotas[linha, 2].Value = caminho.Origem;
                     }
                 }
             }
@@ -175,25 +175,70 @@ namespace _22125_22127_Proj1ED
 
         private void btnProcurar_Click(object sender, EventArgs e)
         {
-            string cidade = txtNome.Text.Trim();
+            string cidadeNome = txtNome.Text.Trim();
 
-            if (cidade == "")
+            if (string.IsNullOrWhiteSpace(cidadeNome))
+            {
                 MessageBox.Show("Erro! Verifique se o campo está preenchido corretamente.");
-
+            }
             else
             {
-                // se ambas as cidades existem
-                if (arvore.Existe(new Cidade(cidade)))
+                // Verifica se a cidade existe na árvore
+                Cidade cidadeProcurada = new Cidade(cidadeNome);
+
+                if (arvore.Existe(cidadeProcurada))
                 {
-                    Cidade c = new Cidade(cidade);
-                    nudCoordenadaX.Value = (decimal)c.X;
-                    nudCoordenadaY.Value = (decimal)c.Y;
+                    // Obtem a cidade encontrada na árvore
+                    Cidade cidadeEncontrada = arvore.DadoAtual();
+
+                    // Atualiza os campos na interface com as informações da cidade
+                    nudCoordenadaX.Value = (decimal)cidadeEncontrada.X;
+                    nudCoordenadaY.Value = (decimal)cidadeEncontrada.Y;
+
+                    // Atualiza a cidade selecionada e os campos da interface
+                    cidadeSelecionada = cidadeEncontrada;
+                    ListaSimples<Ligacoes> rotasEncontradas = cidadeEncontrada.Ligacao;
+                    PreencherLigacoes(rotasEncontradas);
+
                     pcMapa.Invalidate();
                     pcArvore.Invalidate();
                 }
-
                 else
+                {
                     MessageBox.Show("Cidade não encontrada!");
+                }
+            }
+        }
+
+        private void PreencherLigacoes(ListaSimples<Ligacoes> rotasEncontradas)
+        {
+            if (cidadeSelecionada != null)
+            {
+                txtNome.Text = cidadeSelecionada.Nome;
+                nudCoordenadaX.Value = (decimal)cidadeSelecionada.X;
+                nudCoordenadaY.Value = (decimal)cidadeSelecionada.Y;
+
+                dgvRotas.Rows.Clear();
+
+                // Verifica se a lista não está vazia
+                if (rotasEncontradas != null && rotasEncontradas.QuantosNos > 0)
+                {
+                    dgvRotas.RowCount = rotasEncontradas.QuantosNos;
+
+                    int linha = 0;
+                    var atual = rotasEncontradas.Primeiro;
+
+                    while (atual != null)
+                    {
+                        Ligacoes rota = atual.Info;
+                        dgvRotas[linha, 0].Value = rota.Destino;
+                        dgvRotas[linha, 1].Value = rota.Distancia;
+                        dgvRotas[linha, 2].Value = rota.Origem;
+
+                        atual = atual.Prox;
+                        linha++;
+                    }
+                }
             }
         }
 
@@ -204,10 +249,31 @@ namespace _22125_22127_Proj1ED
                 try
                 {
                     arvore.GravarArquivoDeRegistros(dlgSalvar.FileName);
+
+                    if (dlgSalvarCaminho.ShowDialog() == DialogResult.OK)
+                    {
+                        FileStream cidadesLigacoes = new FileStream(dlgLigacoes.FileName, FileMode.Open);
+                        BinaryWriter arquivoLigacoes = new BinaryWriter(cidadesLigacoes);
+
+                        List<Cidade> arvoreLista = arvore.Listar();
+                        foreach (Cidade cidade in arvoreLista)
+                        {
+                            ListaSimples<Ligacoes> caminhos = cidade.Ligacao;
+
+                            List<Ligacoes> caminhosListados = caminhos.Lista();
+                            foreach (Ligacoes ligacaoLista in caminhosListados)
+                            {
+                                ligacaoLista.GravarRegistro(arquivoLigacoes);
+                            }
+                        }
+
+                        arquivoLigacoes.Close();
+                    }
+
                 }
                 catch (IOException)
                 {
-                    Console.WriteLine("Erro de leitura no arquivo");
+                    Console.WriteLine("Erro salvar arquivo");
                 }
             }
         }
@@ -395,40 +461,6 @@ namespace _22125_22127_Proj1ED
                         else
                             MessageBox.Show("Não foi possível alterar o caminho!");
                 }
-            }
-        }
-
-        private void btnProcurarCaminho_Click(object sender, EventArgs e)
-        {
-            string origem = txtOrigem.Text.Trim();
-            string destino = txtDestino.Text.Trim();
-
-            if (origem == "" || destino == "")
-                MessageBox.Show("Erro! Verifique se os campos estão preenchidos corretamente.");
-
-            else
-            {
-                // se ambas as cidades existem
-                if (arvore.Existe(new Cidade(destino)) && arvore.Existe(new Cidade(origem)))
-                {
-                    // se a exclusão deu certo
-                    if (arvore.Atual.Info.Ligacao.ExisteDado(new Ligacoes(origem, destino)))
-                    {
-                        Ligacoes ligacoes = arvore.Atual.Info.Ligacao.Atual.Info;
-                        nudDistancia2.Value = ligacoes.Distancia;
-                        pcMapa.Invalidate();
-                        pcArvore.Invalidate();
-                    }
-
-                    else
-                    {
-                        LimparCampos();
-                        MessageBox.Show("Erro! Ligação não localizada!");
-                    }
-                }
-
-                else
-                    MessageBox.Show("Caminho inválido!");
             }
         }
     }

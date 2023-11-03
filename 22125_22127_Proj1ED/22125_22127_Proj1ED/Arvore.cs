@@ -279,6 +279,26 @@ public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegist
         }
 
     }
+
+    public List<Dado> Listar()
+    {
+        List<Dado> lista = new List<Dado>();
+
+        GravarInOrdem(raiz);
+
+        void GravarInOrdem(NoArvore<Dado> r)
+        {
+            if (r != null)
+            {
+                GravarInOrdem(r.Esq);
+                lista.Add(r.Info);
+                GravarInOrdem(r.Dir);
+            }
+        }
+
+        return lista;
+    }
+
 }
 
 
