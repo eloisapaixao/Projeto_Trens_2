@@ -325,7 +325,7 @@ namespace _22125_22127_Proj1ED
             {
                 Cidade cidade = new Cidade(nome);
 
-                if(arvore.Existe(cidade))
+                if (arvore.Existe(cidade))
                 {
                     double cidadeX = (double)nudCoordenadaX.Value;
                     double cidadeY = (double)nudCoordenadaY.Value;
@@ -356,36 +356,35 @@ namespace _22125_22127_Proj1ED
                             MessageBox.Show("Não foi possível alterar a cidade!");
                         }
                     }
-                    
+
                 }
-            }                          
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            txtNome.Text = cidadeSelecionada.Nome;
-            nudCoordenadaX.Value = (decimal)cidadeSelecionada.X;
-            nudCoordenadaY.Value = (decimal)cidadeSelecionada.Y;
+            txtNome.Text = " ";
+            nudCoordenadaX.Value = 0;
+            nudCoordenadaY.Value = 0;
         }
 
         private void btnIncluirCaminho_Click(object sender, EventArgs e)
         {
-            string origem = txtOrigem.Text.Trim();
-            string destino = txtDestino.Text.Trim();
+            string nomeOrigem = txtOrigem.Text;
+            string nomeDestino = txtDestino.Text;
             int distancia = (int)nudDistancia2.Value;
 
-            if (origem == "" || destino == "" || distancia == 0)
-                MessageBox.Show("Erro! Verifique se os campos estão preenchidos corretamente.");
+            if (nomeOrigem == "" || nomeDestino == "" || distancia == 0)
+                MessageBox.Show("Dados inválidos! Preencha-os corretamente");
 
             else
             {
-                // se ambas as cidades existem
-                if (arvore.Existe(new Cidade(origem)) && arvore.Existe(new Cidade(destino)))
+                if (arvore.Existe(new Cidade(nomeDestino)) && arvore.Existe(new Cidade(nomeOrigem)))
                 {
-                    Ligacoes ligacoes = new Ligacoes(origem, destino, distancia);
-                    ligacoes.NomeArquivo = dlgLigacoes.FileName;
-                    arvore.Atual.Info.Ligacao.InserirEmOrdem(ligacoes);
-                    MessageBox.Show("Inclusão feita com sucesso!");
+                    var ligacao = new Ligacoes(nomeOrigem, nomeDestino, distancia);
+                    ligacao.NomeArquivo = dlgLigacoes.FileName;
+                    arvore.Atual.Info.Ligacao.InserirEmOrdem(ligacao);
+                    MessageBox.Show("Caminho incluído com sucesso!");
                     Preencher();
                     pcMapa.Invalidate();
                     pcArvore.Invalidate();
@@ -422,7 +421,7 @@ namespace _22125_22127_Proj1ED
             }
             else
                 MessageBox.Show("Não foi possível excluir o caminho!");
-            
+
         }
 
         private void btnAlterarCaminho_Click(object sender, EventArgs e)
@@ -445,21 +444,58 @@ namespace _22125_22127_Proj1ED
 
                 else
                     if (arvore.Existe(new Cidade(destino)) && arvore.Existe(new Cidade(origem)))
+                {
+                    Ligacoes ligacao = new Ligacoes(origem, destino, distancia);
+                    ligacao.NomeArquivo = dlgLigacoes.FileName;
+
+                    if (arvore.Atual.Info.Ligacao.RemoverDado(ligacao))
                     {
-                        Ligacoes ligacao = new Ligacoes(origem, destino, distancia);
-                        ligacao.NomeArquivo = dlgLigacoes.FileName;
+                        arvore.Atual.Info.Ligacao.InserirEmOrdem(ligacao);
+                        MessageBox.Show("Caminho alterado com sucesso!");
+                        Preencher();
+                        pcMapa.Invalidate();
+                        pcMapa.Invalidate();
+                    }
 
-                        if (arvore.Atual.Info.Ligacao.RemoverDado(ligacao))
-                        {
-                            arvore.Atual.Info.Ligacao.InserirEmOrdem(ligacao);
-                            MessageBox.Show("Caminho alterado com sucesso!");
-                            Preencher();
-                            pcMapa.Invalidate();
-                            pcMapa.Invalidate();
-                        }
+                    else
+                        MessageBox.Show("Não foi possível alterar o caminho!");
+                }
+            }
+        }
 
-                        else
-                            MessageBox.Show("Não foi possível alterar o caminho!");
+        private void btnProcurarCaminho_Click(object sender, EventArgs e)
+        {
+            string origem = txtOrigem.Text.Trim();
+            string destino = txtDestino.Text.Trim();
+
+            if (origem == "" || destino == "")
+            {
+                MessageBox.Show("Erro! Verifique se os campos estão preenchidos corretamente.");
+            }
+            else
+            {
+                // Verificar se ambas as cidades existem
+                if (arvore.Existe(new Cidade(destino)) && arvore.Existe(new Cidade(origem)))
+                {
+                    // Verificar se a ligação existe
+                    if (arvore.Atual.Info.Ligacao.ExisteDado(new Ligacoes(origem, destino)))
+                    {
+                        // A ligação existe, obter informações e atualizar campos
+                        Ligacoes ligacoes = arvore.Atual.Info.Ligacao.Atual.Info;
+                        nudDistancia2.Value = ligacoes.Distancia;
+                        pcMapa.Invalidate();
+                        pcArvore.Invalidate();
+                    }
+                    else
+                    {
+                        // A ligação não foi encontrada, limpar campos
+                        LimparCampos();
+                        MessageBox.Show("Erro! Ligação não localizada!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Caminho inválido!");
                 }
             }
         }

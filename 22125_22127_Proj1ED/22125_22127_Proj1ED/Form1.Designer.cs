@@ -80,6 +80,7 @@ namespace _22125_22127_Proj1ED
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.dlgSalvarCaminho = new System.Windows.Forms.OpenFileDialog();
+            this.btnProcurarCaminho = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).BeginInit();
@@ -278,6 +279,7 @@ namespace _22125_22127_Proj1ED
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.btnProcurarCaminho);
             this.groupBox2.Controls.Add(this.btnIncluirCaminho);
             this.groupBox2.Controls.Add(this.btnAlterarCaminho);
             this.groupBox2.Controls.Add(this.txtDestino);
@@ -298,7 +300,7 @@ namespace _22125_22127_Proj1ED
             // btnIncluirCaminho
             // 
             this.btnIncluirCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnIncluirCaminho.Location = new System.Drawing.Point(42, 108);
+            this.btnIncluirCaminho.Location = new System.Drawing.Point(7, 108);
             this.btnIncluirCaminho.Name = "btnIncluirCaminho";
             this.btnIncluirCaminho.Size = new System.Drawing.Size(67, 50);
             this.btnIncluirCaminho.TabIndex = 53;
@@ -309,7 +311,7 @@ namespace _22125_22127_Proj1ED
             // btnAlterarCaminho
             // 
             this.btnAlterarCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAlterarCaminho.Location = new System.Drawing.Point(194, 108);
+            this.btnAlterarCaminho.Location = new System.Drawing.Point(159, 108);
             this.btnAlterarCaminho.Name = "btnAlterarCaminho";
             this.btnAlterarCaminho.Size = new System.Drawing.Size(67, 50);
             this.btnAlterarCaminho.TabIndex = 52;
@@ -340,7 +342,7 @@ namespace _22125_22127_Proj1ED
             // btnExcluirCaminho
             // 
             this.btnExcluirCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExcluirCaminho.Location = new System.Drawing.Point(118, 108);
+            this.btnExcluirCaminho.Location = new System.Drawing.Point(83, 108);
             this.btnExcluirCaminho.Name = "btnExcluirCaminho";
             this.btnExcluirCaminho.Size = new System.Drawing.Size(67, 50);
             this.btnExcluirCaminho.TabIndex = 49;
@@ -571,6 +573,17 @@ namespace _22125_22127_Proj1ED
             // 
             this.dlgSalvarCaminho.FileName = "openFileDialog1";
             // 
+            // btnProcurarCaminho
+            // 
+            this.btnProcurarCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnProcurarCaminho.Location = new System.Drawing.Point(232, 108);
+            this.btnProcurarCaminho.Name = "btnProcurarCaminho";
+            this.btnProcurarCaminho.Size = new System.Drawing.Size(67, 50);
+            this.btnProcurarCaminho.TabIndex = 54;
+            this.btnProcurarCaminho.Text = "Procurar Caminho";
+            this.btnProcurarCaminho.UseVisualStyleBackColor = true;
+            this.btnProcurarCaminho.Click += new System.EventHandler(this.btnProcurarCaminho_Click);
+            // 
             // frmMapa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -654,6 +667,7 @@ namespace _22125_22127_Proj1ED
         private Button btnIncluirCaminho;
         private Button btnAlterarCaminho;
         private OpenFileDialog dlgSalvarCaminho;
+        private Button btnProcurarCaminho;
     }
 }
 
