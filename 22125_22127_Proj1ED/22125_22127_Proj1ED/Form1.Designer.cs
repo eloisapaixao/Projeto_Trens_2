@@ -52,6 +52,7 @@ namespace _22125_22127_Proj1ED
             this.tbCidades = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnProcurarCaminho = new System.Windows.Forms.Button();
             this.btnIncluirCaminho = new System.Windows.Forms.Button();
             this.btnAlterarCaminho = new System.Windows.Forms.Button();
             this.txtDestino = new System.Windows.Forms.TextBox();
@@ -80,7 +81,19 @@ namespace _22125_22127_Proj1ED
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.dlgSalvarCaminho = new System.Windows.Forms.OpenFileDialog();
-            this.btnProcurarCaminho = new System.Windows.Forms.Button();
+            this.tabBusca = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cPassando = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).BeginInit();
@@ -94,6 +107,10 @@ namespace _22125_22127_Proj1ED
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcArvore)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            this.tabBusca.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -255,6 +272,7 @@ namespace _22125_22127_Proj1ED
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbCidades.Controls.Add(this.tabPage1);
             this.tbCidades.Controls.Add(this.tabPage2);
+            this.tbCidades.Controls.Add(this.tabBusca);
             this.tbCidades.Location = new System.Drawing.Point(0, 49);
             this.tbCidades.Name = "tbCidades";
             this.tbCidades.SelectedIndex = 0;
@@ -296,6 +314,17 @@ namespace _22125_22127_Proj1ED
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Caminhos";
+            // 
+            // btnProcurarCaminho
+            // 
+            this.btnProcurarCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnProcurarCaminho.Location = new System.Drawing.Point(232, 108);
+            this.btnProcurarCaminho.Name = "btnProcurarCaminho";
+            this.btnProcurarCaminho.Size = new System.Drawing.Size(67, 50);
+            this.btnProcurarCaminho.TabIndex = 54;
+            this.btnProcurarCaminho.Text = "Procurar Caminho";
+            this.btnProcurarCaminho.UseVisualStyleBackColor = true;
+            this.btnProcurarCaminho.Click += new System.EventHandler(this.btnProcurarCaminho_Click);
             // 
             // btnIncluirCaminho
             // 
@@ -573,16 +602,151 @@ namespace _22125_22127_Proj1ED
             // 
             this.dlgSalvarCaminho.FileName = "openFileDialog1";
             // 
-            // btnProcurarCaminho
+            // tabBusca
             // 
-            this.btnProcurarCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnProcurarCaminho.Location = new System.Drawing.Point(232, 108);
-            this.btnProcurarCaminho.Name = "btnProcurarCaminho";
-            this.btnProcurarCaminho.Size = new System.Drawing.Size(67, 50);
-            this.btnProcurarCaminho.TabIndex = 54;
-            this.btnProcurarCaminho.Text = "Procurar Caminho";
-            this.btnProcurarCaminho.UseVisualStyleBackColor = true;
-            this.btnProcurarCaminho.Click += new System.EventHandler(this.btnProcurarCaminho_Click);
+            this.tabBusca.Controls.Add(this.dataGridView1);
+            this.tabBusca.Controls.Add(this.label8);
+            this.tabBusca.Controls.Add(this.button1);
+            this.tabBusca.Controls.Add(this.textBox1);
+            this.tabBusca.Controls.Add(this.textBox2);
+            this.tabBusca.Controls.Add(this.numericUpDown1);
+            this.tabBusca.Controls.Add(this.label5);
+            this.tabBusca.Controls.Add(this.comboBox1);
+            this.tabBusca.Controls.Add(this.label6);
+            this.tabBusca.Controls.Add(this.label7);
+            this.tabBusca.Controls.Add(this.pictureBox1);
+            this.tabBusca.Location = new System.Drawing.Point(4, 22);
+            this.tabBusca.Name = "tabBusca";
+            this.tabBusca.Padding = new System.Windows.Forms.Padding(3);
+            this.tabBusca.Size = new System.Drawing.Size(817, 521);
+            this.tabBusca.TabIndex = 2;
+            this.tabBusca.Text = "Busca";
+            this.tabBusca.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(344, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(470, 515);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(161, 114);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(125, 20);
+            this.textBox1.TabIndex = 58;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(6, 114);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(125, 20);
+            this.textBox2.TabIndex = 57;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDown1.Location = new System.Drawing.Point(97, 155);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(244, 20);
+            this.numericUpDown1.TabIndex = 52;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(6, 152);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 20);
+            this.label5.TabIndex = 56;
+            this.label5.Text = "Distância:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(104, 35);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(1, 21);
+            this.comboBox1.TabIndex = 55;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(157, 82);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 20);
+            this.label6.TabIndex = 54;
+            this.label6.Text = "Destino:";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(6, 82);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(64, 20);
+            this.label7.TabIndex = 53;
+            this.label7.Text = "Origem:";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(121, 181);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(67, 50);
+            this.button1.TabIndex = 59;
+            this.button1.Text = "Procurar Caminho";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 289);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(197, 20);
+            this.label8.TabIndex = 60;
+            this.label8.Text = "Melhor caminho (yyyyy Km)";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cPassando});
+            this.dataGridView1.Location = new System.Drawing.Point(6, 312);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(335, 144);
+            this.dataGridView1.TabIndex = 61;
+            // 
+            // cPassando
+            // 
+            this.cPassando.HeaderText = "Passanso por:";
+            this.cPassando.Name = "cPassando";
             // 
             // frmMapa
             // 
@@ -614,6 +778,11 @@ namespace _22125_22127_Proj1ED
             ((System.ComponentModel.ISupportInitialize)(this.pcArvore)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tabBusca.ResumeLayout(false);
+            this.tabBusca.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -668,6 +837,19 @@ namespace _22125_22127_Proj1ED
         private Button btnAlterarCaminho;
         private OpenFileDialog dlgSalvarCaminho;
         private Button btnProcurarCaminho;
+        private TabPage tabBusca;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn cPassando;
+        private Label label8;
+        private Button button1;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private NumericUpDown numericUpDown1;
+        private Label label5;
+        private ComboBox comboBox1;
+        private Label label6;
+        private Label label7;
+        private PictureBox pictureBox1;
     }
 }
 
