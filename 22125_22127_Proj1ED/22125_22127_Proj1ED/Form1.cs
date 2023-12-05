@@ -20,6 +20,7 @@ namespace _22125_22127_Proj1ED
 
         Arvore<Cidade> arvore;
         private Cidade cidadeSelecionada;
+        Grafo oGrafo = new Grafo(null);
 
         private void btnSair_Click(object sender, EventArgs e)
         {
@@ -35,6 +36,7 @@ namespace _22125_22127_Proj1ED
             nudDistancia2.Value = 0;
             dgvRotas.Rows.Clear();
         }
+
         private void frmMapa_Load_1(object sender, EventArgs e)
         {
             if (dlgAbrir.ShowDialog() == DialogResult.OK)
@@ -67,17 +69,49 @@ namespace _22125_22127_Proj1ED
                     cidadeSelecionada = arvore.Raiz.Info;
                     Preencher();
                 }
+
+                ComboBoxComplete(arvore.Raiz);
             }
+        }
+
+        void ComboBoxComplete(NoArvore<Cidade> noCidade)
+        {
+            if (noCidade == null)
+                return;
+
+            Cidade cidade = noCidade.Info;
+
+            cbOrigem.Items.Add(cidade.Nome);
+            cbDestino.Items.Add(cidade.Nome);
+
+            ComboBoxComplete(noCidade.Esq);
+            ComboBoxComplete(noCidade.Dir);
+        }
+
+        bool IndiceCaminho(NoArvore<Cidade> noCidade, string nome, ref int indice)
+        {
+            if (noCidade == null)
+                return false;
+
+            bool achou = false;
+            Cidade cidade = noCidade.Info;
+
+            int i = -1;
+            if (nome == cidade.Nome)
+            {
+                achou = true;
+            }
+            i++;
+
+            return achou;
+
+            IndiceCaminho(noCidade.Esq, nome, ref i);
+            IndiceCaminho(noCidade.Dir, nome, ref i);
         }
 
         private void pcArvore_Paint(object sender, PaintEventArgs e)
         {
             arvore.DesenharArvore(pcArvore.Width / 2, 0, e.Graphics);
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void pcMapa_Paint(object sender, PaintEventArgs e)
@@ -244,11 +278,6 @@ namespace _22125_22127_Proj1ED
                     Console.WriteLine("Erro salvar arquivo");
                 }
             }
-        }
-
-        private void tbCidades_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -471,6 +500,16 @@ namespace _22125_22127_Proj1ED
                     MessageBox.Show("Caminho inválido!");
                 }
             }
+        }
+
+        private void btnBuscarCaminho_Click(object sender, EventArgs e)
+        {
+            lsbCaminhos.Items.Clear();
+
+            int inicio = cbOrigem.SelectedIndex;
+            int fim = cbDestino.SelectedIndex;
+
+            lsbCaminhos.Items.Add(oGrafo.Caminho(inicio, fim, lsbCaminhos));
         }
     }
 }
