@@ -67,6 +67,7 @@ namespace _22125_22127_Proj1ED
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pcArvore = new System.Windows.Forms.PictureBox();
             this.tabBusca = new System.Windows.Forms.TabPage();
+            this.lsbCaminhos = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnBuscarCaminho = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -89,9 +90,8 @@ namespace _22125_22127_Proj1ED
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.dlgSalvarCaminho = new System.Windows.Forms.OpenFileDialog();
-            this.cbOrigem = new System.Windows.Forms.ComboBox();
-            this.cbDestino = new System.Windows.Forms.ComboBox();
-            this.lsbCaminhos = new System.Windows.Forms.ListBox();
+            this.txtOrigemBusca = new System.Windows.Forms.TextBox();
+            this.txtDestinoBusca = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCoordenadaX)).BeginInit();
@@ -124,6 +124,7 @@ namespace _22125_22127_Proj1ED
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cidades";
+            // 
             // nudCoordenadaY
             // 
             this.nudCoordenadaY.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -466,9 +467,9 @@ namespace _22125_22127_Proj1ED
             // 
             // tabBusca
             // 
+            this.tabBusca.Controls.Add(this.txtDestinoBusca);
+            this.tabBusca.Controls.Add(this.txtOrigemBusca);
             this.tabBusca.Controls.Add(this.lsbCaminhos);
-            this.tabBusca.Controls.Add(this.cbDestino);
-            this.tabBusca.Controls.Add(this.cbOrigem);
             this.tabBusca.Controls.Add(this.label8);
             this.tabBusca.Controls.Add(this.btnBuscarCaminho);
             this.tabBusca.Controls.Add(this.numericUpDown1);
@@ -483,6 +484,14 @@ namespace _22125_22127_Proj1ED
             this.tabBusca.TabIndex = 2;
             this.tabBusca.Text = "Busca";
             this.tabBusca.UseVisualStyleBackColor = true;
+            // 
+            // lsbCaminhos
+            // 
+            this.lsbCaminhos.FormattingEnabled = true;
+            this.lsbCaminhos.Location = new System.Drawing.Point(10, 221);
+            this.lsbCaminhos.Name = "lsbCaminhos";
+            this.lsbCaminhos.Size = new System.Drawing.Size(373, 290);
+            this.lsbCaminhos.TabIndex = 63;
             // 
             // label8
             // 
@@ -699,29 +708,19 @@ namespace _22125_22127_Proj1ED
             // 
             this.dlgSalvarCaminho.FileName = "openFileDialog1";
             // 
-            // cbOrigem
+            // txtOrigemBusca
             // 
-            this.cbOrigem.FormattingEnabled = true;
-            this.cbOrigem.Location = new System.Drawing.Point(10, 40);
-            this.cbOrigem.Name = "cbOrigem";
-            this.cbOrigem.Size = new System.Drawing.Size(121, 21);
-            this.cbOrigem.TabIndex = 61;
+            this.txtOrigemBusca.Location = new System.Drawing.Point(10, 40);
+            this.txtOrigemBusca.Name = "txtOrigemBusca";
+            this.txtOrigemBusca.Size = new System.Drawing.Size(100, 20);
+            this.txtOrigemBusca.TabIndex = 64;
             // 
-            // cbDestino
+            // txtDestinoBusca
             // 
-            this.cbDestino.FormattingEnabled = true;
-            this.cbDestino.Location = new System.Drawing.Point(161, 40);
-            this.cbDestino.Name = "cbDestino";
-            this.cbDestino.Size = new System.Drawing.Size(121, 21);
-            this.cbDestino.TabIndex = 62;
-            // 
-            // lsbCaminhos
-            // 
-            this.lsbCaminhos.FormattingEnabled = true;
-            this.lsbCaminhos.Location = new System.Drawing.Point(10, 221);
-            this.lsbCaminhos.Name = "lsbCaminhos";
-            this.lsbCaminhos.Size = new System.Drawing.Size(373, 290);
-            this.lsbCaminhos.TabIndex = 63;
+            this.txtDestinoBusca.Location = new System.Drawing.Point(161, 40);
+            this.txtDestinoBusca.Name = "txtDestinoBusca";
+            this.txtDestinoBusca.Size = new System.Drawing.Size(100, 20);
+            this.txtDestinoBusca.TabIndex = 65;
             // 
             // frmMapa
             // 
@@ -819,9 +818,9 @@ namespace _22125_22127_Proj1ED
         private Label label6;
         private Label label7;
         private PictureBox pictureBox1;
-        private ComboBox cbDestino;
-        private ComboBox cbOrigem;
         private ListBox lsbCaminhos;
+        private MaskedTextBox txtDestinoBusca;
+        private TextBox txtOrigemBusca;
     }
 }
 

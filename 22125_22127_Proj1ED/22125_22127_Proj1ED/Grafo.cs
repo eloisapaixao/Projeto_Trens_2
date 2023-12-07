@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 class Grafo
 {
-    private const int NUM_VERTICES = 20;
+    private const int NUM_VERTICES = 100;
 
     Vertice[] vertices;
 
