@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 
-public class Arvore<Dado> : IDados<Dado> where Dado : IComparable<Dado>, IRegistro<Dado>, new()
+public class Arvore<Dado> where Dado : IComparable<Dado>, IRegistro<Dado>, new()
 {
     private NoArvore<Dado> raiz, atual, antecessor;
     public NoArvore<Dado> Raiz { get => raiz; set => raiz = value; }

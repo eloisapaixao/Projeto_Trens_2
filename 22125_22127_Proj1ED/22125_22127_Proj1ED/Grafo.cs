@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 class Grafo
 {
-    private const int NUM_VERTICES = 100;
+    private const int NUM_VERTICES = 500;
 
     Vertice[] vertices;
 
@@ -55,7 +55,8 @@ class Grafo
 
     public void NovaAresta(int inicio, int fim, int peso)
     {
-        adjMatrix[inicio, fim] = peso;
+        if(fim > inicio && fim >= 0)
+            adjMatrix[inicio, fim] = peso;
     }
 
     public void ExibirVertice(int v)
@@ -319,7 +320,8 @@ class Grafo
         lista.Items.Add(resultado);
         lista.Items.Add(" ");
         lista.Items.Add(" ");
-        lista.Items.Add("Caminho entre " + vertices[inicioDoPercurso].Rotulo +
+        if(finalDoPercurso > inicioDoPercurso && finalDoPercurso>=0)
+            lista.Items.Add("Caminho entre " + vertices[inicioDoPercurso].Rotulo +
         " e " + vertices[finalDoPercurso].Rotulo);
         lista.Items.Add(" ");
 

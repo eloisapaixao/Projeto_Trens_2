@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 public class ListaSimples<Dado>
-    where Dado : IComparable<Dado>
+    where Dado : IComparable<Dado>, IRegistro<Dado>
 {
     private NoLista<Dado> primeiro;
     private NoLista<Dado> ultimo;
@@ -82,26 +83,56 @@ public class ListaSimples<Dado>
         }
     }
 
+    public int PosicaoAtual
+    {
+        get
+        {
+            var dadoAtual = Atual;
+
+            int i = 0;
+            atual = primeiro;
+            while (atual != dadoAtual)
+            {
+                atual = atual.Prox;
+                i++;
+            }
+
+            return i;
+        }
+
+        set
+        {
+            if (!EstaVazia && value < this.QuantosNos)
+            {
+                int posicao = value;
+                atual = primeiro;
+                for (int i = 0; i < value; i++)
+                    atual = atual.Prox;
+            }
+        }
+    }
+
     public void InserirAntesDoInicio(Dado novoDado)
     {
-        var novoNo = new NoLista<Dado>(novoDado, primeiro);
+        var novoNo = new NoLista<Dado>(novoDado);
+        if (EstaVazia)          // se a lista está vazia, estamos
+            ultimo = novoNo;    // incluindo o 1o e o último nós!
 
-        if (ultimo == null)
-            ultimo = novoNo;
-
+        novoNo.Prox = primeiro;
         primeiro = novoNo;
-        quantosNos++;   
+        quantosNos++;
     }
 
     public void InserirAposFim(Dado novoDado)
     {
-        var novoNo = new NoLista<Dado>(novoDado, null);
-
+        var novoNo = new NoLista<Dado>(novoDado);
         if (EstaVazia)
             primeiro = novoNo;
         else
             ultimo.Prox = novoNo;
+
         ultimo = novoNo;
+        ultimo.Prox = null;
         quantosNos++;
     }
 
@@ -181,53 +212,60 @@ public class ListaSimples<Dado>
         return achou; // devolve o valor da variável achou, que indica
     } // se a chave procurada foi ou não encontrado
 
-    public bool InserirEmOrdem(Dado dados)
+    public void InserirEmOrdem(Dado dados)
     {
-        if (!ExisteDado(dados)) // existeChave configura anterior e atual
-        { // aqui temos certeza de que a chave não existe
-            if (EstaVazia) // se a lista está vazia, então o
-                InserirAntesDoInicio(dados); // novo nó é o primeiro da lista
-            else
-            if (anterior == null && atual != null)
-                InserirAntesDoInicio(dados); // liga novo antes do primeiro
-            else
-                if (anterior != null && atual == null)
-                InserirAposFim(dados);
-            else
-                InserirNoMeio(dados); // insere entre os nós anterior e atual
-
-            return true;  // significa que incluiu
+        if (EstaVazia) // se a lista está vazia, então o
+            InserirAntesDoInicio(dados); // novo nó é o primeiro da lista
+        else
+          // testa se nova chave < primeira chave
+          if (dados.CompareTo(primeiro.Info) < 0)  // novo nó será ligado
+            InserirAntesDoInicio(dados);          // antes do primeiro
+        else
+            // testa se nova chave > última chave
+            if (dados.CompareTo(ultimo.Info) > 0)
+            InserirAposFim(dados);  // cria nó e o liga no fim da lista
+        else
+              if (!ExisteDado(dados))  // insere entre os nós anterior 
+        {                        // e atual 
+            var novo = new NoLista<Dado>(dados, null);
+            anterior.Prox = novo; // liga anterior ao novo
+            novo.Prox = atual; // e novo no atual
+            if (anterior == ultimo) // se incluiu ao final da lista,
+                ultimo = novo; // atualiza o apontador ultimo
+            quantosNos++;
         }
-        return false;   // significa que não incluiu
-
-        //throw new Exception("Aluno já cadastrado!");
+        else
+            throw new Exception("Já existe!");
     }
 
     public bool RemoverDado(Dado aExcluir)
     {
-        if (ExisteDado(aExcluir)) // existeDado configurou 
-        {                         // atual e anterior
-            quantosNos--;
-
-            if (atual == primeiro)  // se vamos excluir o 1o nó
+        if (ExisteDado(aExcluir))
+        {  // lista não está vazia, temos um 1o e um último
+            if (atual == primeiro)  // caso especial
             {
                 primeiro = primeiro.Prox;
-                if (primeiro == null)  // esvaziou
-                    ultimo = null;
+                atual = primeiro;
+                if (primeiro == null)  // se esvaziou a lista!!!!
+                    ultimo = null;     // ultimo passa a apontar nada
             }
             else
-                if (atual == ultimo)    // se vamos excluir o último nó
+                if (atual == ultimo)  // caso especial
             {
                 ultimo = anterior;
                 ultimo.Prox = null;
+                atual = ultimo;
             }
-            else
+            else  // caso geral, nó interno sendo excluído
             {
                 anterior.Prox = atual.Prox;
-                atual.Prox = null;
+                atual = atual.Prox;
             }
-            return true;
+
+            quantosNos--;
+            return true;  // conseguiu excluir
         }
+
         return false;
     }
     private void InserirNoMeio(Dado dados)
@@ -382,6 +420,28 @@ public class ListaSimples<Dado>
             atual = atual.Prox;
         }
         return lista;
+    }
+
+    public void GravarRegistros(BinaryWriter arq)
+    {
+        var posicaoAtual = PosicaoAtual;
+        this.IniciarPercursoSequencial();
+        while (PodePercorrer())
+        {
+            this.Atual.Info.GravarRegistro(arq);
+        }
+        PosicaoAtual = posicaoAtual;
+    }
+
+    public void LerRegistro(string nomeArquivo)
+    {
+        StreamReader arq = new StreamReader(nomeArquivo);
+        while (!arq.EndOfStream)
+        {
+            Dado dado = new Dado();
+            this.Incluir(dado.LerRegistro(arq));
+        }
+        arq.Close();
     }
 }
 

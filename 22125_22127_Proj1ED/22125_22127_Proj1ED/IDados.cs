@@ -6,7 +6,7 @@ public enum Situacao
 {
     navegando, incluindo, pesquisando, editando, excluindo
 }
-interface IDados<Dado> where Dado : IComparable<Dado>, IRegistro<Dado>, new()
+interface IDados<Dado> where Dado : IComparable<Dado>, IRegistro, new()
 {
     //void PosicionarNoPrimeiro();
     //void AvancarPosicao();
